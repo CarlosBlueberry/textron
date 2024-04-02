@@ -68,7 +68,7 @@
                                     <select v-model="searchCompany" class="form-select filters-select oRegular"
                                         aria-label="Default select example">
                                         <option value="">See all</option>
-                                        <option value="Artic cat">Artic cat</option>
+                                        <option value="Arctic cat">Arctic cat</option>
                                         <option value="Cushman">Cushman</option>
                                         <option value="Textron GSE">Textron GSE</option>
                                         <option value="Jacobsen">Jacobsen</option>
@@ -108,7 +108,7 @@
                                                     <div class="me-5 pt-2">
                                                         <h5 class="oExtraBold text-dark">{{ item.data.title }}</h5>
                                                     </div>
-                                                    <div class="me-3" v-if="item.data.company === 'Artic cat'">
+                                                    <div class="me-3" v-if="item.data.company === 'Arctic cat'">
                                                         <img v-bind:src="require('../../../../assets/images/logo-artic-black.png')"
                                                             alt="ISC" class="img-fluid" />
                                                     </div>
@@ -169,7 +169,7 @@
                                                 <div class="me-5 pt-2">
                                                     <h5 class="oExtraBold text-dark">{{ item.data.title }}</h5>
                                                 </div>
-                                                <div class="me-3" v-if="item.data.company === 'Artic cat'">
+                                                <div class="me-3" v-if="item.data.company === 'Arctic cat'">
                                                     <img v-bind:src="require('../../../../assets/images/logo-artic-black.png')"
                                                         alt="ISC" class="img-fluid" />
                                                 </div>

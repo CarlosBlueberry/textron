@@ -1532,7 +1532,7 @@
                     v-bind:src="
                       require('../../../../../assets/images/artic-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1541,7 +1541,7 @@
                     v-bind:src="
                       require('../../../../../assets/images/cushman-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1550,21 +1550,21 @@
                     v-bind:src="
                       require('../../../../../assets/images/jacobsen.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'gse@gmail.com'"
                     v-bind:src="require('../../../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'textron@gmail.com'"
                     v-bind:src="require('../../../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1573,7 +1573,7 @@
                     v-bind:src="
                       require('../../../../../assets/images/ezgo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />

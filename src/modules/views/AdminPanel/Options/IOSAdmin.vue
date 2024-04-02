@@ -1,45 +1,20 @@
 <template>
   <!-- @click="$router.push({ name: 'business_updates-detail', params: { id: item.id } })" -->
-  <loading
-    v-model:active="isLoading"
-    :can-cancel="false"
-    :is-full-page="true"
-  />
+  <loading v-model:active="isLoading" :can-cancel="false" :is-full-page="true" />
   <div v-if="isLoading === false" class="business-panel">
     <div class="container p-0">
       <h1 class="oExtraBold h3 mt-5">Admin Panel</h1>
       <!-- Navbar menú -->
       <nav class="nav mt-5">
-        <a
-          class="nav-link text-light pointer"
-          @click="$router.push({ name: 'admin_panel-business_updates' })"
-          >Business Updates</a
-        >
-        <a
-          @click="$router.push({ name: 'admin_panel-success_stories' })"
-          class="nav-link text-light pointer"
-          >Success Stories</a
-        >
-        <a
-          @click="$router.push({ name: 'admin_panel-training_plan' })"
-          class="nav-link text-light pointer"
-          >Training Plan</a
-        >
-        <a
-          @click="$router.push({ name: 'admin_panel-sharepoints' })"
-          class="nav-link text-light pointer"
-          >Sharepoints</a
-        >
-        <a
-          @click="$router.push({ name: 'admin_panel-company' })"
-          class="nav-link text-light pointer"
-          >Company</a
-        >
-        <a
-          @click="$router.push({ name: 'admin_panel-ios' })"
-          class="nav-link text-light pointer"
-          >IOS</a
-        >
+        <a class="nav-link text-light pointer" @click="$router.push({ name: 'admin_panel-business_updates' })">Business
+          Updates</a>
+        <a @click="$router.push({ name: 'admin_panel-success_stories' })" class="nav-link text-light pointer">Success
+          Stories</a>
+        <a @click="$router.push({ name: 'admin_panel-training_plan' })" class="nav-link text-light pointer">Training
+          Plan</a>
+        <a @click="$router.push({ name: 'admin_panel-sharepoints' })" class="nav-link text-light pointer">Sharepoints</a>
+        <a @click="$router.push({ name: 'admin_panel-company' })" class="nav-link text-light pointer">Company</a>
+        <a @click="$router.push({ name: 'admin_panel-ios' })" class="nav-link text-light pointer">IOS</a>
       </nav>
       <!-- Endx Navbar menú -->
       <hr />
@@ -50,14 +25,8 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-3">
           <form action="">
             <div class="input-group mb-5 mt-4">
-              <input
-                type="text"
-                class="form-control input-search"
-                placeholder="Please, enter a title"
-                aria-label="Please, enter a keyword"
-                aria-describedby="basic-addon2"
-                v-model="searchTitle"
-              />
+              <input type="text" class="form-control input-search" placeholder="Please, enter a title"
+                aria-label="Please, enter a keyword" aria-describedby="basic-addon2" v-model="searchTitle" />
             </div>
           </form>
         </div>
@@ -77,40 +46,21 @@
               <tr v-for="item in filterResults" v-bind:key="item.id">
                 <td class="p-2">{{ item.data.title }}</td>
                 <td class="p-2">
-                  <a class="a_none_style" :href="item.data.file" target="_blank"
-                    >See Pdf</a
-                  >
+                  <a class="a_none_style" :href="item.data.file" target="_blank">See Pdf</a>
                 </td>
                 <td class="p-2">
                   <div class="d-flex justify-content-center">
                     <div class="p-1">
-                      <button
-                        @click="showModalData(item.id)"
-                        type="button"
-                        class="btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editarRegistro"
-                      >
-                        <img
-                          v-bind:src="
-                            require('../../../../assets/images/icon-edit.png')
-                          "
-                          alt="ISC user"
-                          width="13"
-                          class="img-fluid"
-                        />
+                      <button @click="showModalData(item.id)" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#editarRegistro">
+                        <img v-bind:src="require('../../../../assets/images/icon-edit.png')
+                          " alt="ISC user" width="13" class="img-fluid" />
                       </button>
                     </div>
                     <div class="p-1">
                       <button @click="deleteData(item.id)" class="btn">
-                        <img
-                          v-bind:src="
-                            require('../../../../assets/images/icon-trah.png')
-                          "
-                          alt="ISC user"
-                          width="13"
-                          class="img-fluid"
-                        />
+                        <img v-bind:src="require('../../../../assets/images/icon-trah.png')
+                          " alt="ISC user" width="13" class="img-fluid" />
                       </button>
                     </div>
                   </div>
@@ -139,33 +89,14 @@
   </div>
 
   <!-- MODALS -->
-  <div
-    class="modal fade"
-    id="editarRegistro"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div
-      class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
-    >
+  <div class="modal fade" id="editarRegistro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Update entry</h5>
-          <button
-            type="button"
-            class="btn-close p-3"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          >
-            <img
-              v-bind:src="require('../../../../assets/images/close-btn.png')"
-              width="15"
-              alt="close"
-              class="img"
-            />
+          <button type="button" class="btn-close p-3" data-bs-dismiss="modal" aria-label="Close">
+            <img v-bind:src="require('../../../../assets/images/close-btn.png')" width="15" alt="close" class="img" />
           </button>
         </div>
         <div class="modal-body container">
@@ -173,25 +104,13 @@
             <form action="">
               <div class="mb-3">
                 <label for="title" class="form-label">Update module</label>
-                <input
-                  v-model="title"
-                  type="text"
-                  class="form-control"
-                  id="title"
-                  name="title"
-                  required
-                />
+                <input v-model="title" type="text" class="form-control" id="title" name="title" required />
               </div>
               <div class="mb-3">
                 <div class="">
                   <label for="description" class="mb-3">Update content:</label>
-                  <textarea
-                    v-model="description"
-                    class="form-control"
-                    id="description"
-                    name="description"
-                    style="height: 400px"
-                  >
+                  <textarea v-model="description" class="form-control" id="description" name="description"
+                    style="height: 400px">
                   </textarea>
                 </div>
               </div>
@@ -200,32 +119,16 @@
                   <div class="col">
                     <h6 class="">Upload new image:</h6>
                     <div class="mb-3">
-                      <input
-                        style="display: none"
-                        class="selectimage"
-                        @change="SelectImage"
-                        ref="imgSelector"
-                        accept="image/png, image/jpeg"
-                        type="file"
-                        name="img"
-                        id="img"
-                      />
-                      <button
-                        @click="onSelectImage"
-                        type="button"
-                        class="btn btn-primary btn-green mt-3"
-                      >
+                      <input style="display: none" class="selectimage" @change="SelectImage" ref="imgSelector"
+                        accept="image/png, image/jpeg" type="file" name="img" id="img" />
+                      <button @click="onSelectImage" type="button" class="btn btn-primary btn-green mt-3">
                         <h6 class="pt-1 hRegular">Choose file</h6>
                       </button>
                     </div>
                   </div>
                   <div class="col">
                     <p class="">Current image:</p>
-                    <img
-                      v-bind:src="dataSelected.data.img"
-                      alt=""
-                      class="img-fluid"
-                    />
+                    <img v-bind:src="dataSelected.data.img" alt="" class="img-fluid" />
                   </div>
                 </div>
               </div>
@@ -233,17 +136,9 @@
                 <h6 class="">Upload your pdf file:</h6>
                 <div class="mb-3">
                   <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupFile01"
-                      >Upload</label
-                    >
-                    <input
-                      ref="cedulaTrabajador"
-                      accept="application/pdf"
-                      type="file"
-                      class="form-control"
-                      id="file"
-                      name="file"
-                    />
+                    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                    <input ref="cedulaTrabajador" accept="application/pdf" type="file" class="form-control" id="file"
+                      name="file" />
                   </div>
                 </div>
               </div>
@@ -252,23 +147,13 @@
                   <h6 class="">Selected image:</h6>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <img
-                    width="300"
-                    height="300"
-                    class="img-yhumbnail"
-                    :src="localImage"
-                    alt="entry-picture"
-                  />
+                  <img width="300" height="300" class="img-yhumbnail" :src="localImage" alt="entry-picture" />
                 </div>
               </div>
               <br />
               <div class="row mt-4">
                 <div class="text-center">
-                  <button
-                    @click="updateIOS(dataSelected.id)"
-                    type=""
-                    class="btn btn-primary btn-green"
-                  >
+                  <button @click.prevent="updateIOS(dataSelected.id)" type="" class="btn btn-primary btn-green">
                     <h6 class="pt-1 hRegular">Update</h6>
                   </button>
                 </div>
@@ -306,17 +191,7 @@ export default {
     Loading,
   },
   mounted() {
-    this.sharepoints = [];
-    supply_collection
-      .get()
-      .then((r) =>
-        r.docs.map((item) =>
-          this.sharepoints.push({ id: item.id, data: item.data() })
-        )
-      );
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
+    this.Preload();
   },
   computed: {
     filterResults: function () {
@@ -324,6 +199,24 @@ export default {
     },
   },
   methods: {
+    async Preload() {
+      this.isLoading = true; // Inicia la carga
+      this.sharepoints = []; // Limpia los datos existentes
+
+      // Lógica para cargar los datos
+      supply_collection
+        .get()
+        .then((r) =>
+          r.docs.map((item) =>
+            this.sharepoints.push({ id: item.id, data: item.data() })
+          )
+        );
+
+      // Simular la carga durante 2 segundos
+      setTimeout(() => {
+        this.isLoading = false; // Finaliza la carga
+      }, 2000);
+    },
     filterProductsByName: function (sharepoints) {
       return sharepoints.filter(
         (item) =>
@@ -378,91 +271,77 @@ export default {
     },
 
     async updateIOS(id) {
-      new Swal({
-        title: "Please wait",
-        allowOutsideClick: false,
-      });
-      Swal.showLoading();
-      const picture = await uploadImage(this.img);
       try {
-        // Cargar archivo
+        const picture = await uploadImage(this.img);
+
         const { files } = this.$refs.cedulaTrabajador;
-        // this.loading = true;
         const file = files[0];
+
         if (file) {
           const isPdf = file.type === "application/pdf";
           if (isPdf) {
-            const response = await firebase
-              .storage()
-              .ref(`pdfs/${file.name}`)
-              .put(file);
+            const response = await firebase.storage().ref(`pdfs/${file.name}`).put(file);
             const url = await response.ref.getDownloadURL();
-            console.log("archivo disponible en ", url);
-            // this.downloadUrl = ;
-            // Archivo cargado
+
             if (picture == null && url == null) {
-              supply_collection
-                .doc(id)
-                .update({
-                  title: this.title,
-                  departament: this.description,
-                })
-                .then(() => this.$mount());
-            } else if (picture != null && url == null) {
-              supply_collection
-                .doc(id)
-                .update({
-                  title: this.title,
-                  departament: this.description,
-                  img: picture,
-                })
-                .then(() => this.$mount());
-            } else if (picture == null && url != null) {
-              supply_collection
-                .doc(id)
-                .update({
-                  title: this.title,
-                  departament: this.description,
-                  file: url,
-                })
-                .then(() => this.$mount());
-            } else {
-              supply_collection
-                .doc(id)
-                .update({
-                  title: this.title,
-                  departament: this.description,
-                  img: picture,
-                  file: url,
-                })
-                .then(() => this.$mount());
-            }
-          } else {
-            console.log("Archivo no valido");
-          }
-        } else {
-          console.log("falta el archivo");
-          if (picture == null) {
-            supply_collection
-              .doc(id)
-              .update({
+              await supply_collection.doc(id).update({
                 title: this.title,
                 departament: this.description,
-              })
-              .then(() => this.$mount());
-          } else {
-            supply_collection
-              .doc(id)
-              .update({
+              }).then(() => { this.closeModal('editarRegistro'); this.Preload(); });
+            } else if (picture != null && url == null) {
+              await supply_collection.doc(id).update({
                 title: this.title,
                 departament: this.description,
                 img: picture,
-              })
-              .then(() => this.$mount());
+              }).then(() => { this.closeModal('editarRegistro'); this.Preload(); });
+            } else if (picture == null && url != null) {
+              await supply_collection.doc(id).update({
+                title: this.title,
+                departament: this.description,
+                file: url,
+              }).then(() => { this.closeModal('editarRegistro'); this.Preload(); });
+            } else {
+              await supply_collection.doc(id).update({
+                title: this.title,
+                departament: this.description,
+                img: picture,
+                file: url,
+              }).then(() => { this.closeModal('editarRegistro'); this.Preload(); });
+            }
+          } else {
+            console.log("Archivo no válido");
+          }
+        } else {
+          console.log("Falta el archivo");
+          if (picture == null) {
+            await supply_collection.doc(id).update({
+              title: this.title,
+              departament: this.description,
+            }).then(() => { this.closeModal('editarRegistro'); this.Preload(); });
+          } else {
+            await supply_collection.doc(id).update({
+              title: this.title,
+              departament: this.description,
+              img: picture,
+            }).then(() => { this.closeModal('editarRegistro'); this.Preload(); });
           }
         }
+
       } catch (error) {
         console.error(error);
+        // Aquí puedes manejar el error de manera adecuada, por ejemplo, mostrando un mensaje al usuario.
+      }
+    },
+    closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('style', 'display: none');
+        const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+        if (modalBackdrop) {
+          document.body.removeChild(modalBackdrop);
+        }
       }
     },
     // <----- SELECT IMAGE ---->

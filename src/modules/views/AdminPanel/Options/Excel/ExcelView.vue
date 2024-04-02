@@ -124,8 +124,7 @@
                         <div class="border" v-if="esub.data.type == 'two'">
                           <div
                             style="background-color: #e8e8e8; height: 67.5px; width: 300px;"
-                            class="p-2 border text-dark d-flex"
-                          >
+                            class="p-2 border text-dark d-flex">
                             <a
                                     style="margin-right: 10px; margin-top: 15px; cursor: pointer"
                                     v-if="ec.data.category == 'V'"
@@ -1370,7 +1369,7 @@
                     v-bind:src="
                       require('../../../../../assets/images/artic-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1379,7 +1378,7 @@
                     v-bind:src="
                       require('../../../../../assets/images/cushman-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1388,21 +1387,21 @@
                     v-bind:src="
                       require('../../../../../assets/images/jacobsen.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'gse@gmail.com'"
                     v-bind:src="require('../../../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'textron@gmail.com'"
                     v-bind:src="require('../../../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1411,7 +1410,7 @@
                     v-bind:src="
                       require('../../../../../assets/images/ezgo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1725,7 +1724,7 @@ export default {
 
           document.getElementById(
             result.data.apuntador + result.data.position + result.data.type
-          ).value = parseInt(result.data.value);
+          ).value = parseFloat(result.data.value);
 
           // Q :id="esub.id + 'Q' + 'bwr'"
 
@@ -4191,7 +4190,7 @@ export default {
 
             if (dato >= 0 && dato != resultados.data.value) {
 
-              excec_results.doc(resultados.id).update({ value: parseInt(dato) });
+              excec_results.doc(resultados.id).update({ value: parseFloat(dato) });
 
               console.log(
                 "Guardado Se edito el registro " +
@@ -4204,7 +4203,7 @@ export default {
 
             } else if (dato == '' && dato != resultados.data.value) {
               
-              excec_results.doc(resultados.id).update({ value: parseInt(dato) });
+              excec_results.doc(resultados.id).update({ value: parseFloat(dato) });
 
               console.log(
                 "VACIO Guardado Se edito el registro " +
@@ -4217,7 +4216,7 @@ export default {
 
             } else if (dato == 0 && dato != resultados.data.value) {
 
-              excec_results.doc(resultados.id).update({ value: parseInt(dato) });
+              excec_results.doc(resultados.id).update({ value: parseFloat(dato) });
 
               console.log(
                 "CERO Guardado Se edito el registro " +

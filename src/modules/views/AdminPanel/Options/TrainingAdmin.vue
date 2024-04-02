@@ -62,7 +62,7 @@
                             <select v-model="searchCompany" class="form-select filters-select oRegular"
                                 aria-label="Default select example">
                                 <option value="">See all</option>
-                                <option value="Artic cat">Artic cat</option>
+                                <option value="Arctic cat">Arctic cat</option>
                                 <option value="Cushman">Cushman</option>
                                 <option value="Textron GSE">Textron GSE</option>
                                 <option value="Jacobsen">Jacobsen</option>
@@ -102,7 +102,7 @@
                                 <th class="p-2" scope="row">{{ item.data.date }}</th>
                                 <td class="p-2">
                                     <div class="d-flex justify-content-center">
-                                        <div class="me-3" v-if="item.data.company === 'Artic cat'">
+                                        <div class="me-3" v-if="item.data.company === 'Arctic cat'">
                                             <img v-bind:src="require('../../../../assets/images/logo-artic.png')"
                                                 alt="ISC" class="img-fluid" width="90" />
                                         </div>
@@ -232,7 +232,7 @@
                             <strong>Company:</strong>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <div class="me-3" v-if="dataSelected.data.company === 'Artic cat'">
+                            <div class="me-3" v-if="dataSelected.data.company === 'Arctic cat'">
                                 <img v-bind:src="require('../../../../assets/images/logo-artic.png')" alt="ISC"
                                     class="img-fluid" width="90" />
                             </div>

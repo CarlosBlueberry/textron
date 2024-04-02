@@ -144,7 +144,7 @@
                     "
                   >
                     <option value="">See all</option>
-                    <option value="Artic cat">Artic cat</option>
+                    <option value="Arctic cat">Arctic cat</option>
                     <option value="Cushman">Cushman</option>
                     <option value="Textron GSE">Textron GSE</option>
                     <option value="Jacobsen">Jacobsen</option>
@@ -238,7 +238,7 @@
                   >
                     <option selected>Company</option>
                     <option value="">See all</option>
-                    <option value="Artic cat">Artic cat</option>
+                    <option value="Arctic cat">Arctic cat</option>
                     <option value="Cushman">Cushman</option>
                     <option value="Textron GSE">Textron GSE</option>
                     <option value="Jacobsen">Jacobsen</option>
@@ -559,7 +559,7 @@ export default {
             date: date,
             file: "S/D",
             status: "pending",
-            company: "Artic cat",
+            company: "Arctic cat",
             created: calculatedCreatedAt,
           })
           .then(() => this.$mount());
@@ -571,7 +571,7 @@ export default {
             date: date,
             file: picture,
             status: "pending",
-            company: "Artic cat",
+            company: "Arctic cat",
             created: calculatedCreatedAt,
           })
           .then(() => this.$mount());

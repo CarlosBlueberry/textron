@@ -119,7 +119,7 @@
                 aria-label="Default select example"
               >
                 <option value="">Options ...</option>
-                <option value="Artic cat">Artic cat</option>
+                <option value="Arctic cat">Arctic cat</option>
                 <option value="Cushman">Cushman</option>
                 <option value="Textron GSE">Textron GSE</option>
                 <option value="Jacobsen">Jacobsen</option>

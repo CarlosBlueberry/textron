@@ -175,7 +175,7 @@
                 <p style="margin-left: 20px">{{ itemB.data.date }}</p>
               </div>
               <div class="d-flex date-logo-post mb-2">
-                <div class="me-3" v-if="itemB.data.company === 'Artic cat'">
+                <div class="me-3" v-if="itemB.data.company === 'Arctic cat'">
                   <img
                     v-bind:src="
                       require('../../../assets/images/logo-artic-black.png')
@@ -250,7 +250,7 @@
                 <p style="margin-left: 20px">{{ itemT.data.date }}</p>
               </div>
               <div class="d-flex date-logo-post mb-2">
-                <div class="me-3" v-if="itemT.data.company === 'Artic cat'">
+                <div class="me-3" v-if="itemT.data.company === 'Arctic cat'">
                   <img
                     v-bind:src="
                       require('../../../assets/images/logo-artic-black.png')

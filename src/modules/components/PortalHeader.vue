@@ -35,54 +35,55 @@
         </div>
 
         <div class="col-12 col-sm-12 col-md-12 col-lg-3"></div>
-
         <div
-          v-if="user"
-          class="col-12 col-sm-12 col-md-12 col-lg-2 d-flex justify-content-start"
+        v-if="user"
+        class="col-12 col-sm-12 col-md-12 col-lg-2 d-flex justify-content-start"
         >
-          <img
-            v-if="user.email == 'artic_cat@gmail.com'"
-            v-bind:src="require('../../assets/images/logos/logo_artic.png')"
-            alt="ARTIC CAT"
-            class="img-fluid"
-            width="100"
-          />
-          <img
-            v-else-if="user.email == 'cushman@gmail.com'"
-            v-bind:src="require('../../assets/images/logos/logo_cushman.png')"
-            alt="ARTIC CAT"
-            class="img-fluid"
-            width="150"
-          />
-          <img
-            v-else-if="user.email == 'jacobsen@gmail.com'"
-            v-bind:src="require('../../assets/images/logos/logo_jacobsen.png')"
-            alt="ARTIC CAT"
-            class="img-fluid"
-            width="100"
-          />
-          <img
-            v-else-if="user.email == 'gse@gmail.com'"
-            v-bind:src="require('../../assets/images/logos/logo_gse.png')"
-            alt="ARTIC CAT"
-            class="img-fluid"
-            width="180"
-          />
-          <img
-            v-else-if="user.email == 'textron@gmail.com'"
-            v-bind:src="require('../../assets/images/logos/logo_textron.png')"
-            alt="ARTIC CAT"
-            class="img-fluid"
-            width="150"
-          />
-          <img
-            v-else
-            v-bind:src="require('../../assets/images/logos/logo_ezgo.png')"
-            alt="ARTIC CAT"
-            class="img-fluid"
-            width="150"
-          />
-        </div>
+        <router-link to="/portal">
+            <img
+              v-if="user.email == 'artic_cat@gmail.com'"
+              v-bind:src="require('../../assets/images/logos/logo_artic.png')"
+              alt="ARCTIC CAT"
+              class="img-fluid"
+              width="100"
+            />
+            <img
+              v-else-if="user.email == 'cushman@gmail.com'"
+              v-bind:src="require('../../assets/images/logos/logo_cushman.png')"
+              alt="ARCTIC CAT"
+              class="img-fluid"
+              width="150"
+            />
+            <img
+              v-else-if="user.email == 'jacobsen@gmail.com'"
+              v-bind:src="require('../../assets/images/logos/logo_jacobsen.png')"
+              alt="ARCTIC CAT"
+              class="img-fluid"
+              width="100"
+            />
+            <img
+              v-else-if="user.email == 'gse@gmail.com'"
+              v-bind:src="require('../../assets/images/logos/logo_gse.png')"
+              alt="ARCTIC CAT"
+              class="img-fluid"
+              width="180"
+            />
+            <img
+              v-else-if="user.email == 'textron@gmail.com'"
+              v-bind:src="require('../../assets/images/logos/logo_textron.png')"
+              alt="ARCTIC CAT"
+              class="img-fluid"
+              width="150"
+            />
+            <img
+              v-else
+              v-bind:src="require('../../assets/images/logos/logo_ezgo.png')"
+              alt="ARCTIC CAT"
+              class="img-fluid"
+              width="150"
+            />
+          </router-link>
+          </div>
 
         <div class="col-12 col-sm-12 col-md-12 col-lg-2"></div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-3">

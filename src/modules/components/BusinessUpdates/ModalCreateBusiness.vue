@@ -27,7 +27,7 @@
                     v-bind:src="
                       require('../../../assets/images/artic-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -36,35 +36,35 @@
                     v-bind:src="
                       require('../../../assets/images/cushman-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'jacobsen@gmail.com'"
                     v-bind:src="require('../../../assets/images/jacobsen.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'gse@gmail.com'"
                     v-bind:src="require('../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'textron@gmail.com'"
                     v-bind:src="require('../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else
                     v-bind:src="require('../../../assets/images/ezgo.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -135,7 +135,7 @@
                           >
                             <option selected>Choose an option</option>
                             <option value="All">All companies</option>
-                            <option value="Artic cat">Artic cat</option>
+                            <option value="Arctic cat">Arctic cat</option>
                             <option value="Cushman">Cushman</option>
                             <option value="Textron GSE">Textron GSE</option>
                             <option value="Jacobsen">Jacobsen</option>
@@ -157,7 +157,7 @@
                             "
                           >
                             <option value="global">GLOBAL</option>
-                            <option value="artic cat">ARTIC CAT</option>
+                            <option value="arctic cat">ARCTIC CAT</option>
                             <option value="ezgo/cushman">EZGO | CUSHMAN</option>
                             <option value="jacobsen">JACOBSEN</option>
                             <option value="gse">GSE</option>

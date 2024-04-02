@@ -22,37 +22,37 @@
         <img
           v-if="user.email == 'artic_cat@gmail.com'"
           v-bind:src="require('../../assets/images/artic-logo.gif')"
-          alt="ARTIC CAT"
+          alt="ARCTIC CAT"
           class="img-fluid logo-artic"
         />
         <img
           v-else-if="user.email == 'cushman@gmail.com'"
           v-bind:src="require('../../assets/images/cushman-logo.gif')"
-          alt="ARTIC CAT"
+          alt="ARCTIC CAT"
           class="img-fluid logo-artic"
         />
         <img
           v-else-if="user.email == 'jacobsen@gmail.com'"
           v-bind:src="require('../../assets/images/jacobsen.gif')"
-          alt="ARTIC CAT"
+          alt="ARCTIC CAT"
           class="img-fluid logo-artic"
         />
         <img
           v-else-if="user.email == 'gse@gmail.com'"
           v-bind:src="require('../../assets/images/gse-logo.gif')"
-          alt="ARTIC CAT"
+          alt="ARCTIC CAT"
           class="img-fluid logo-artic"
         />
         <img
           v-else-if="user.email == 'textron@gmail.com'"
           v-bind:src="require('../../assets/images/tx2_azul.gif')"
-          alt="ARTIC CAT"
+          alt="ARCTIC CAT"
           class="img-fluid logo-artic"
         />
         <img
           v-else
           v-bind:src="require('../../assets/images/ezgo.gif')"
-          alt="ARTIC CAT"
+          alt="ARCTIC CAT"
           class="img-fluid logo-artic"
         />
       </li>

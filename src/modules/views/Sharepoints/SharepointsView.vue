@@ -86,7 +86,7 @@
                         <option value="" selected>Category</option>
                         <option value="">See all</option>
                         <option value="global">GLOBAL</option>
-                        <option value="artic cat">ARTIC CAT</option>
+                        <option value="Arctic cat">ARCTIC CAT</option>
                         <option value="ezgo/cushman">EZGO | CUSHMAN</option>
                         <option value="jacobsen">JACOBSEN</option>
                         <option value="gse">GSE</option>

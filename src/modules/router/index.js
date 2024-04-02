@@ -1,6 +1,4 @@
-
 export default {
-
     name: 'portal',
     component: () => import('@/modules/layout/PortalLayout'),
     children: [
@@ -149,7 +147,6 @@ export default {
             path: '/OS',
             name: 'ISC_OS',
             component: () => import('@/modules/views/OS/IscOs')
-        },
+        }, 
     ]
-
 }

@@ -44,7 +44,7 @@
                                 aria-label="Default select example"
                                 v-bind:src="require('../../../../assets/images/arrow-down-w.png')">
                                 <option value="">See all</option>
-                                <option value="Artic cat">Artic cat</option>
+                                <option value="Arctic cat">Arctic cat</option>
                                 <option value="Cushman">Cushman</option>
                                 <option value="Textron GSE">Textron GSE</option>
                                 <option value="Jacobsen">Jacobsen</option>
@@ -84,7 +84,7 @@
                                 <th class="p-2" scope="row">{{ itemB.data.date }}</th>
                                 <td class="p-2">
                                     <div class="d-flex justify-content-center">
-                                        <div class="me-3" v-if="itemB.data.company === 'Artic cat'">
+                                        <div class="me-3" v-if="itemB.data.company === 'Arctic cat'">
                                             <img v-bind:src="require('../../../../assets/images/logo-artic.png')"
                                                 alt="ISC" class="img-fluid" width="90" />
                                         </div>
@@ -206,7 +206,7 @@
                             <strong>Company:</strong>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <div class="me-3" v-if="dataSelected.data.company === 'Artic cat'">
+                            <div class="me-3" v-if="dataSelected.data.company === 'Arctic cat'">
                                 <img v-bind:src="require('../../../../assets/images/logo-artic.png')" alt="ISC"
                                     class="img-fluid" width="90" />
                             </div>
@@ -248,7 +248,6 @@ import { business_collection } from '@/firebase/firebase'
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import Swal from 'sweetalert2'
-
 
 export default {
     data() {

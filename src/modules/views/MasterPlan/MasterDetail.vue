@@ -16,8 +16,11 @@
   >
     <div class="container">
       <div class="row">
-        <div class="col">
-          <h2 class="mt-5 text-uppercase">{{ category }} X-Matrix</h2>
+        <div class="col d-flex align-items-end">
+          <router-link to="/portal/master_plan">
+              <button class="btn-return-x-matrix" :class="[artic ? 'arctic-btn' : cushman ? 'cushman-btn' : jacobsen ? 'jacobsen-btn' : gse ? 'gse-btn' : 'ezgo-btn']" ><img src="../../../assets/images/return.svg" alt="return" /></button>
+          </router-link>
+          <h2 class="text-uppercase mb-0 ms-3">{{ category }} X-Matrix</h2>
         </div>
         <div class="col">
           <div class="d-flex justify-content-end mt-4">
@@ -67,7 +70,7 @@
                               v-bind:src="
                                 require('../../../assets/images/artic-logo.gif')
                               "
-                              alt="ARTIC CAT"
+                              alt="ARCTIC CAT"
                               class="img-fluid"
                               width="100"
                             />
@@ -76,7 +79,7 @@
                               v-bind:src="
                                 require('../../../assets/images/cushman-logo.gif')
                               "
-                              alt="ARTIC CAT"
+                              alt="ARCTIC CAT"
                               class="img-fluid"
                               width="100"
                             />
@@ -85,7 +88,7 @@
                               v-bind:src="
                                 require('../../../assets/images/jacobsen.gif')
                               "
-                              alt="ARTIC CAT"
+                              alt="ARCTIC CAT"
                               class="img-fluid"
                               width="100"
                             />
@@ -94,7 +97,7 @@
                               v-bind:src="
                                 require('../../../assets/images/tx2.gif')
                               "
-                              alt="ARTIC CAT"
+                              alt="ARCTIC CAT"
                               class="img-fluid"
                               width="100"
                             />
@@ -103,7 +106,7 @@
                               v-bind:src="
                                 require('../../../assets/images/ezgo.gif')
                               "
-                              alt="ARTIC CAT"
+                              alt="ARCTIC CAT"
                               class="img-fluid"
                               width="100"
                             />
@@ -250,7 +253,7 @@
                         v-bind:src="
                           require('../../../assets/images/artic-logo.gif')
                         "
-                        alt="ARTIC CAT"
+                        alt="ARCTIC CAT"
                         class="img-fluid"
                         width="100"
                       />
@@ -259,7 +262,7 @@
                         v-bind:src="
                           require('../../../assets/images/cushman-logo.gif')
                         "
-                        alt="ARTIC CAT"
+                        alt="ARCTIC CAT"
                         class="img-fluid"
                         width="100"
                       />
@@ -268,21 +271,21 @@
                         v-bind:src="
                           require('../../../assets/images/jacobsen.gif')
                         "
-                        alt="ARTIC CAT"
+                        alt="ARCTIC CAT"
                         class="img-fluid"
                         width="100"
                       />
                       <img
                         v-else-if="user.email == 'gse@gmail.com'"
                         v-bind:src="require('../../../assets/images/tx2.gif')"
-                        alt="ARTIC CAT"
+                        alt="ARCTIC CAT"
                         class="img-fluid"
                         width="100"
                       />
                       <img
                         v-else
                         v-bind:src="require('../../../assets/images/ezgo.gif')"
-                        alt="ARTIC CAT"
+                        alt="ARCTIC CAT"
                         class="img-fluid"
                         width="100"
                       />
@@ -1059,7 +1062,7 @@
                 <img
                   v-if="user.email == 'artic_cat@gmail.com'"
                   v-bind:src="require('../../../assets/images/artic-logo.gif')"
-                  alt="ARTIC CAT"
+                  alt="ARCTIC CAT"
                   class="img-fluid"
                   width="100"
                 />
@@ -1068,28 +1071,28 @@
                   v-bind:src="
                     require('../../../assets/images/cushman-logo.gif')
                   "
-                  alt="ARTIC CAT"
+                  alt="ARCTIC CAT"
                   class="img-fluid"
                   width="100"
                 />
                 <img
                   v-else-if="user.email == 'jacobsen@gmail.com'"
                   v-bind:src="require('../../../assets/images/jacobsen.gif')"
-                  alt="ARTIC CAT"
+                  alt="ARCTIC CAT"
                   class="img-fluid"
                   width="100"
                 />
                 <img
                   v-else-if="user.email == 'gse@gmail.com'"
                   v-bind:src="require('../../../assets/images/tx2.gif')"
-                  alt="ARTIC CAT"
+                  alt="ARCTIC CAT"
                   class="img-fluid"
                   width="100"
                 />
                 <img
                   v-else
                   v-bind:src="require('../../../assets/images/ezgo.gif')"
-                  alt="ARTIC CAT"
+                  alt="ARCTIC CAT"
                   class="img-fluid"
                   width="100"
                 />
@@ -1115,35 +1118,35 @@
               <img
                 v-if="user.email == 'artic_cat@gmail.com'"
                 v-bind:src="require('../../../assets/images/artic-logo.gif')"
-                alt="ARTIC CAT"
+                alt="ARCTIC CAT"
                 class="img-fluid"
                 width="100"
               />
               <img
                 v-else-if="user.email == 'cushman@gmail.com'"
                 v-bind:src="require('../../../assets/images/cushman-logo.gif')"
-                alt="ARTIC CAT"
+                alt="ARCTIC CAT"
                 class="img-fluid"
                 width="100"
               />
               <img
                 v-else-if="user.email == 'jacobsen@gmail.com'"
                 v-bind:src="require('../../../assets/images/jacobsen.gif')"
-                alt="ARTIC CAT"
+                alt="ARCTIC CAT"
                 class="img-fluid"
                 width="100"
               />
               <img
                 v-else-if="user.email == 'gse@gmail.com'"
                 v-bind:src="require('../../../assets/images/tx2.gif')"
-                alt="ARTIC CAT"
+                alt="ARCTIC CAT"
                 class="img-fluid"
                 width="100"
               />
               <img
                 v-else
                 v-bind:src="require('../../../assets/images/ezgo.gif')"
-                alt="ARTIC CAT"
+                alt="ARCTIC CAT"
                 class="img-fluid"
                 width="100"
               />
@@ -1242,7 +1245,7 @@
                     v-bind:src="
                       require('../../../assets/images/artic-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -1251,28 +1254,28 @@
                     v-bind:src="
                       require('../../../assets/images/cushman-logo.gif')
                     "
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'jacobsen@gmail.com'"
                     v-bind:src="require('../../../assets/images/jacobsen.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else-if="user.email == 'gse@gmail.com'"
                     v-bind:src="require('../../../assets/images/tx2.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
                   <img
                     v-else
                     v-bind:src="require('../../../assets/images/ezgo.gif')"
-                    alt="ARTIC CAT"
+                    alt="ARCTIC CAT"
                     class="img-fluid"
                     width="100"
                   />
@@ -2638,6 +2641,75 @@ export default {
 </script>
 
 <style scoped>
+.btn-return-x-matrix{
+  border: none;
+  border-radius: 50%;
+  width: 2.5vw;
+  height: 2.5vw;
+  padding: 0;
+}
+.arctic-btn{
+  background-color: #599a30;
+}
+.btn-return-x-matrix img{
+  filter: invert(93%) sepia(42%) saturate(7353%) hue-rotate(180deg) brightness(140%) contrast(107%);
+}
+.cushman-btn{
+  background-color: #edcc45;
+}
+.jacobsen-btn{
+  background-color: #d67443;
+}
+.gse-btn{
+  background-color: #ef954c;
+}
+.ezgo-btn{
+  background-color: #1b406e;
+}
+.btn-return-x-matrix img{
+  width:2vw;
+  height:2vw;
+}
+.arctic-btn:hover{
+  background-color: transparent;
+  color: #599a30;
+  border: 1px solid #599a30;
+}
+.arctic-btn:hover img{
+  filter: invert(51%) sepia(59%) saturate(536%) hue-rotate(53deg) brightness(92%) contrast(82%);
+}
+.ezgo-btn:hover{
+  background-color: transparent;
+  color: #1b406e;
+  border: 1px solid #1b406e;
+}
+.ezgo-btn:hover img{
+  filter: invert(20%) sepia(22%) saturate(3025%) hue-rotate(183deg) brightness(94%) contrast(90%);
+}
+.cushman-btn:hover{
+  background-color: transparent;
+  color: #edcc45;
+  border: 1px solid #edcc45;
+}
+.cushman-btn:hover img{
+  filter: invert(91%) sepia(94%) saturate(1588%) hue-rotate(324deg) brightness(103%) contrast(86%);
+}
+.cushman-btn:hover{
+  background-color: transparent;
+  color: #d67443;
+  border: 1px solid #d67443;
+}
+.cushman-btn:hover img{
+  filter: invert(61%) sepia(98%) saturate(1986%) hue-rotate(333deg) brightness(91%) contrast(83%);
+}
+.gse-btn:hover{
+  background-color: transparent;
+  color: #ef954c;
+  border: 1px solid #ef954c;
+}
+.gse-btn:hover img{
+  filter: invert(80%) sepia(39%) saturate(3372%) hue-rotate(326deg) brightness(100%) contrast(88%);
+}
 .cuadricula-matrix {
   border: solid black 0.001em;
   width: 36.3px;

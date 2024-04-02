@@ -14,7 +14,7 @@
                                 class="img-fluid logo-2" />
                         </div>
                         <div class="ms-5 me-5">
-                            <img v-bind:src="require('../../assets/images/logo-artic.png')" alt="ARTIC CAT"
+                            <img v-bind:src="require('../../assets/images/logo-artic.png')" alt="ARCTIC CAT"
                                 class="img-fluid logo-3" />
                         </div>
                         <div class="ms-5 me-5">
@@ -51,7 +51,7 @@
                                 <img v-bind:src="require('../../assets/images/logo-cushman.png')" alt="CUSHMAN" class="img-fluid logo-2"/>
                             </div>
                             <div class="ms-5 me-5">
-                                <img v-bind:src="require('../../assets/images/logo-artic.png')" alt="ARTIC CAT" class="img-fluid logo-3"/>
+                                <img v-bind:src="require('../../assets/images/logo-artic.png')" alt="ARCTIC CAT" class="img-fluid logo-3"/>
                             </div>
                             <div class="ms-5 me-5">
                                 <img v-bind:src="require('../../assets/images/logo-jacobsen.png')" alt="JACOBSEN" class="img-fluid logo-4"/>
