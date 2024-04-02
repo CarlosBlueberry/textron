@@ -123,17 +123,29 @@
                       <div v-if="ec.id == esub.data.id_category">
                         <div class="border" v-if="esub.data.type == 'two'">
                           <div
-                            style="background-color: #e8e8e8; height: 67.5px; width: 300px;"
-                            class="p-2 border text-dark d-flex">
+                            style="
+                              background-color: #e8e8e8;
+                              height: 67.5px;
+                              width: 300px;
+                            "
+                            class="p-2 border text-dark d-flex"
+                          >
                             <a
-                                    style="margin-right: 10px; margin-top: 15px; cursor: pointer"
-                                    v-if="ec.data.category == 'V'"
-                                    @click="deleteData(esub.id)"
-                                    class="text-danger"
-                                  >
-                                    X
+                              style="
+                                margin-right: 10px;
+                                margin-top: 15px;
+                                cursor: pointer;
+                              "
+                              v-if="ec.data.category == 'V'"
+                              @click="deleteData(esub.id)"
+                              class="text-danger"
+                            >
+                              X
                             </a>
-                            <div style="margin-top: 15px;" class="tooltip-container">
+                            <div
+                              style="margin-top: 15px"
+                              class="tooltip-container"
+                            >
                               <span class="tooltip-text">
                                 <div class="container">
                                   {{ esub.data.desc }}
@@ -146,8 +158,8 @@
                                 style="text-decoration: none"
                                 class="text-dark"
                               >
-                                {{ esub.data.name }} | <span>{{ esub.data.formula }}</span>
-                              
+                                {{ esub.data.name }} |
+                                <span>{{ esub.data.formula }}</span>
                               </a>
                             </div>
                           </div>
@@ -158,12 +170,12 @@
                             class="p-2 border text-dark d-flex"
                           >
                             <a
-                                    style="margin-right: 10px; cursor: pointer"
-                                    v-if="ec.data.category == 'V'"
-                                    @click="deleteData(esub.id)"
-                                    class="text-danger"
-                                  >
-                                    X
+                              style="margin-right: 10px; cursor: pointer"
+                              v-if="ec.data.category == 'V'"
+                              @click="deleteData(esub.id)"
+                              class="text-danger"
+                            >
+                              X
                             </a>
                             <div class="tooltip-container">
                               <span class="tooltip-text">
@@ -178,8 +190,8 @@
                                 style="text-decoration: none"
                                 class="text-dark"
                               >
-                                {{ esub.data.name }} | <span>{{ esub.data.formula }}</span>
-                              
+                                {{ esub.data.name }} |
+                                <span>{{ esub.data.formula }}</span>
                               </a>
                             </div>
                           </div>
@@ -561,7 +573,7 @@
                             <!-- Un input -->
                             <td v-if="esub.data.type == 'one'">
                               <input
-                                :id="esub.id + 'M1' + 'o'"
+                                :id="esub.id + 'M1' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -570,7 +582,7 @@
                             </td>
                             <td v-if="esub.data.type == 'one'">
                               <input
-                                :id="esub.id + 'M2' + 'o'"
+                                :id="esub.id + 'M2' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -579,7 +591,7 @@
                             </td>
                             <td v-if="esub.data.type == 'one'">
                               <input
-                                :id="esub.id + 'M3' + 'o'"
+                                :id="esub.id + 'M3' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -910,8 +922,8 @@
                             <td v-if="esub.data.type == 'two'">
                               <div
                                 v-if="
-                                  esub.data.name != 'Airfreight' &&
-                                  esub.data.name == 'COPQ' ||
+                                  (esub.data.name != 'Airfreight' &&
+                                    esub.data.name == 'COPQ') ||
                                   esub.data.name == 'Inventory turns' ||
                                   esub.data.name == 'Inventory $' ||
                                   esub.data.name == 'Engagement' ||
@@ -1010,7 +1022,7 @@
                                   esub.data.name != 'Transformation plan' &&
                                   esub.data.name != 'Hoshin Kanri'
                                 "
-                                :id="esub.id + 'W1' + 'o'"
+                                :id="esub.id + 'W1' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1035,7 +1047,7 @@
                                   esub.data.name != 'Transformation plan' &&
                                   esub.data.name != 'Hoshin Kanri'
                                 "
-                                :id="esub.id + 'W2' + 'o'"
+                                :id="esub.id + 'W2' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1060,7 +1072,7 @@
                                   esub.data.name != 'Transformation plan' &&
                                   esub.data.name != 'Hoshin Kanri'
                                 "
-                                :id="esub.id + 'W3' + 'o'"
+                                :id="esub.id + 'W3' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1085,7 +1097,7 @@
                                   esub.data.name != 'Transformation plan' &&
                                   esub.data.name != 'Hoshin Kanri'
                                 "
-                                :id="esub.id + 'W4' + 'o'"
+                                :id="esub.id + 'W4' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1110,7 +1122,7 @@
                                   esub.data.name != 'Transformation plan' &&
                                   esub.data.name != 'Hoshin Kanri'
                                 "
-                                :id="esub.id + 'W5' + 'o'"
+                                :id="esub.id + 'W5' + 'one'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1235,7 +1247,7 @@
                         <thead>
                           <tr class="text-center">
                             <th class="text-light casillas_finales" scope="col">
-                              YTD
+                              YTDa
                             </th>
                             <th
                               class="text-light casillas_finales"
@@ -1254,12 +1266,14 @@
                             <!-- Dos input -->
                             <td v-if="esub.data.type == 'two'">
                               <input
+                                :id="esub.id + 'ytd' + 'p1'"
                                 class="input_table_up"
                                 type="number"
                                 value=""
                               />
                               <hr class="m-0" />
                               <input
+                                :id="esub.id + 'ytd' + 'a1'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1267,12 +1281,14 @@
                             </td>
                             <td v-if="esub.data.type == 'two'">
                               <input
+                                :id="esub.id + 'ytd' + 'p2'"
                                 class="input_table_up"
                                 type="number"
                                 value=""
                               />
                               <hr class="m-0" />
                               <input
+                                :id="esub.id + 'ytd' + 'a2'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1282,6 +1298,7 @@
                             <!-- Un input -->
                             <td v-if="esub.data.type == 'one'">
                               <input
+                                :id="esub.id + 'ytd' + 'one1'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1290,6 +1307,7 @@
                             </td>
                             <td v-if="esub.data.type == 'one'">
                               <input
+                                :id="esub.id + 'ytd' + 'one2'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
@@ -1726,12 +1744,68 @@ export default {
             result.data.apuntador + result.data.position + result.data.type
           ).value = parseFloat(result.data.value);
 
-          // Q :id="esub.id + 'Q' + 'bwr'"
+          // YTD
+          // if (
+          //   result.data.identificator ==
+          //   result.data.apuntador + "ytd" + "a1"
+          // ) {
+          //   setTimeout(() => {
+          //     const YTD_p1 = jquery(
+          //       "#" + result.data.apuntador + "ytd" + "p1"
+          //     ).val();
 
-          //&& result.data.apuntador + "Q4" + "a" != 0
+          //     const YTD_p2 = jquery(
+          //       "#" + result.data.apuntador + "ytd" + "p2"
+          //     ).val();
+
+          //     const YTD_a1 = jquery(
+          //       "#" + result.data.apuntador + "ytd" + "a1"
+          //     ).val();
+
+          //     const YTDa2 = jquery(
+          //       "#" + result.data.apuntador + "ytd" + "a2"
+          //     ).val();
+
+          //     // var resta;
+
+          //     // resta = Q1_dato - Q1_dato2;
+          //     // console.log(
+          //     //   result.data.apuntador +
+          //     //     "Resta " +
+          //     //     Q1_dato2 +
+          //     //     Q1_dato +
+          //     //     " igual a " +
+          //     //     resta
+          //     // );
+
+          //     // document.getElementById(
+          //     //   result.data.apuntador + "Q" + "bwr"
+          //     // ).value = resta.toFixed(2);
+
+          //     // var x = document.getElementById(result.data.apuntador + "up");
+          //     // var y = document.getElementById(result.data.apuntador + "down");
+          //     // var z = document.getElementById(result.data.apuntador + "block");
+
+          //     // if (resta < 0) {
+          //     //   x.style.display = "block";
+          //     //   y.style.display = "none";
+          //     //   z.style.display = "none";
+          //     // } else if (resta > 0) {
+          //     //   y.style.display = "block";
+          //     //   x.style.display = "none";
+          //     //   z.style.display = "none";
+          //     // } else {
+          //     //   y.style.display = "none";
+          //     //   x.style.display = "none";
+          //     //   z.style.display = "none";
+          //     // }
+          //   }, 1000);
+          // }
+
+          // Q
+
           if (result.data.identificator == result.data.apuntador + "Q4" + "a") {
             setTimeout(() => {
-              
               const Q4_dato = jquery(
                 "#" + result.data.apuntador + "Q4" + "p"
               ).val();
@@ -1766,21 +1840,7 @@ export default {
 
               var resta;
 
-              // console.log(
-              //   "Valores" +
-              //     " " +
-              //     result.data.identificator +
-              //     " " +
-              //     Q4_dato2 +
-              //     " " +
-              //     Q3_dato2 +
-              //     " " +
-              //     Q2_dato2 +
-              //     " " +
-              //     Q1_dato2
-              // );
-
-              if (Q4_dato2 >= '0') {
+              if (Q4_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -1800,7 +1860,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -1809,10 +1870,15 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q3_dato2 >= '0') {
+              } else if (Q3_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -1832,7 +1898,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -1841,10 +1908,15 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q2_dato2 >= '0') {
+              } else if (Q2_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -1864,7 +1936,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -1873,10 +1946,15 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q1_dato2 >= '0') {
+              } else if (Q1_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -1896,7 +1974,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -1905,7 +1984,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -1971,21 +2055,7 @@ export default {
 
               var resta;
 
-              // console.log(
-              //   "Valores" +
-              //     " " +
-              //     result.data.identificator +
-              //     " " +
-              //     Q4_dato2 +
-              //     " " +
-              //     Q3_dato2 +
-              //     " " +
-              //     Q2_dato2 +
-              //     " " +
-              //     Q1_dato2
-              // );
-
-              if (Q4_dato2 >= '0') {
+              if (Q4_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2005,7 +2075,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "QQQQ1 Resta condicion " +
+                    result.data.apuntador +
+                      "QQQQ1 Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -2014,10 +2085,17 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "QQQQ12 Resta "  + "Dato1" + Q4_dato2  + "Dato2" + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "QQQQ12 Resta " +
+                      "Dato1" +
+                      Q4_dato2 +
+                      "Dato2" +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q3_dato2 >= '0') {
+              } else if (Q3_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2037,7 +2115,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "RestaQQQQ21 condicion " +
+                    result.data.apuntador +
+                      "RestaQQQQ21 condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -2046,10 +2125,15 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "QQQQ22 Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "QQQQ22 Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q2_dato2 >= '0') {
+              } else if (Q2_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2069,7 +2153,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "QQQQ31 Resta condicion " +
+                    result.data.apuntador +
+                      "QQQQ31 Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -2078,10 +2163,15 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "QQQQ32 Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "QQQQ32 Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q1_dato2 >= '0') {
+              } else if (Q1_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2101,7 +2191,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "QQQQ41 Resta condicion " +
+                    result.data.apuntador +
+                      "QQQQ41 Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -2110,7 +2201,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "QQQQ42 Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "QQQQ42 Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -2190,7 +2286,7 @@ export default {
               //     Q1_dato2
               // );
 
-              if (Q4_dato2 >= '0') {
+              if (Q4_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2210,7 +2306,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -2219,10 +2316,15 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q3_dato2 >= '0') {
+              } else if (Q3_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2242,7 +2344,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -2251,10 +2354,15 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q2_dato2 >= '0') {
+              } else if (Q2_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2274,7 +2382,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -2283,10 +2392,15 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q1_dato2 >= '0') {
+              } else if (Q1_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2306,7 +2420,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -2315,7 +2430,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -2341,7 +2461,6 @@ export default {
                 x.style.display = "none";
                 z.style.display = "none";
               }
-              
             }, 1000);
           } else if (
             result.data.identificator ==
@@ -2382,21 +2501,7 @@ export default {
 
               var resta;
 
-              // console.log(
-              //   "Valores" +
-              //     " " +
-              //     result.data.identificator +
-              //     " " +
-              //     Q4_dato2 +
-              //     " " +
-              //     Q3_dato2 +
-              //     " " +
-              //     Q2_dato2 +
-              //     " " +
-              //     Q1_dato2
-              // );
-
-              if (Q4_dato2 >= '0') {
+              if (Q4_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2416,7 +2521,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -2425,10 +2531,15 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q3_dato2 >= '0') {
+              } else if (Q3_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2448,7 +2559,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -2457,10 +2569,15 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q2_dato2 >= '0') {
+              } else if (Q2_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2480,7 +2597,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -2489,10 +2607,15 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
-              } else if (Q1_dato2 >= '0') {
+              } else if (Q1_dato2 >= "0") {
                 if (
                   result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
                   result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
@@ -2512,7 +2635,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -2521,7 +2645,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -2599,7 +2728,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -2608,7 +2738,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -2631,7 +2766,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -2640,7 +2776,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -2663,7 +2804,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -2672,7 +2814,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -2750,7 +2897,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -2759,7 +2907,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -2782,7 +2935,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -2791,7 +2945,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -2814,7 +2973,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -2823,7 +2983,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -2901,7 +3066,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -2910,7 +3076,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -2933,7 +3104,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -2942,7 +3114,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -2965,7 +3142,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -2974,7 +3152,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -3068,7 +3251,8 @@ export default {
                   resta = Q5_dato2 - Q5_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q5_dato +
                       Q5_dato2 +
                       " igual a " +
@@ -3077,7 +3261,12 @@ export default {
                 } else {
                   resta = Q5_dato - Q5_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q5_dato2 + Q5_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q5_dato2 +
+                      Q5_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q4_dato2 >= 0) {
@@ -3100,7 +3289,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -3109,7 +3299,12 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q3_dato2 >= 0) {
@@ -3132,7 +3327,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -3141,7 +3337,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -3164,7 +3365,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -3173,7 +3375,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -3196,7 +3403,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -3205,7 +3413,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -3299,7 +3512,8 @@ export default {
                   resta = Q5_dato2 - Q5_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q5_dato +
                       Q5_dato2 +
                       " igual a " +
@@ -3308,7 +3522,12 @@ export default {
                 } else {
                   resta = Q5_dato - Q5_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q5_dato2 + Q5_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q5_dato2 +
+                      Q5_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q4_dato2 >= 0) {
@@ -3331,7 +3550,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -3340,7 +3560,12 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q3_dato2 >= 0) {
@@ -3363,7 +3588,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -3372,7 +3598,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -3395,7 +3626,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -3404,7 +3636,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -3427,7 +3664,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -3436,7 +3674,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -3530,7 +3773,8 @@ export default {
                   resta = Q5_dato2 - Q5_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q5_dato +
                       Q5_dato2 +
                       " igual a " +
@@ -3539,7 +3783,12 @@ export default {
                 } else {
                   resta = Q5_dato - Q5_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q5_dato2 + Q5_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q5_dato2 +
+                      Q5_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q4_dato2 >= 0) {
@@ -3562,7 +3811,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -3571,7 +3821,12 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q3_dato2 >= 0) {
@@ -3594,7 +3849,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -3603,7 +3859,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -3626,7 +3887,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -3635,7 +3897,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -3658,7 +3925,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -3667,7 +3935,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -3761,7 +4034,8 @@ export default {
                   resta = Q5_dato2 - Q5_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q5_dato +
                       Q5_dato2 +
                       " igual a " +
@@ -3770,7 +4044,12 @@ export default {
                 } else {
                   resta = Q5_dato - Q5_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q5_dato2 + Q5_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q5_dato2 +
+                      Q5_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q4_dato2 >= 0) {
@@ -3793,7 +4072,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -3802,7 +4082,12 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q3_dato2 >= 0) {
@@ -3825,7 +4110,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -3834,7 +4120,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -3857,7 +4148,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -3866,7 +4158,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -3889,7 +4186,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -3898,7 +4196,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -3992,7 +4295,8 @@ export default {
                   resta = Q5_dato2 - Q5_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q5_dato +
                       Q5_dato2 +
                       " igual a " +
@@ -4001,7 +4305,12 @@ export default {
                 } else {
                   resta = Q5_dato - Q5_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q5_dato2 + Q5_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q5_dato2 +
+                      Q5_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q4_dato2 >= 0) {
@@ -4024,7 +4333,8 @@ export default {
                   resta = Q4_dato2 - Q4_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q4_dato +
                       Q4_dato2 +
                       " igual a " +
@@ -4033,7 +4343,12 @@ export default {
                 } else {
                   resta = Q4_dato - Q4_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q4_dato2 + Q4_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q4_dato2 +
+                      Q4_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q3_dato2 >= 0) {
@@ -4056,7 +4371,8 @@ export default {
                   resta = Q3_dato2 - Q3_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q3_dato2 +
                       " igual a " +
@@ -4065,7 +4381,12 @@ export default {
                 } else {
                   resta = Q3_dato - Q3_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q3_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q3_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q2_dato2 >= 0) {
@@ -4088,7 +4409,8 @@ export default {
                   resta = Q2_dato2 - Q2_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q3_dato +
                       Q2_dato2 +
                       " igual a " +
@@ -4097,7 +4419,12 @@ export default {
                 } else {
                   resta = Q2_dato - Q2_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q2_dato2 + Q3_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q2_dato2 +
+                      Q3_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               } else if (Q1_dato2 >= 0) {
@@ -4120,7 +4447,8 @@ export default {
                   resta = Q1_dato2 - Q1_dato;
 
                   console.log(
-                    result.data.apuntador + "Resta condicion " +
+                    result.data.apuntador +
+                      "Resta condicion " +
                       Q1_dato +
                       Q1_dato2 +
                       " igual a " +
@@ -4129,7 +4457,12 @@ export default {
                 } else {
                   resta = Q1_dato - Q1_dato2;
                   console.log(
-                    result.data.apuntador + "Resta " + Q1_dato2 + Q1_dato + " igual a " + resta
+                    result.data.apuntador +
+                      "Resta " +
+                      Q1_dato2 +
+                      Q1_dato +
+                      " igual a " +
+                      resta
                   );
                 }
               }
@@ -4158,8 +4491,59 @@ export default {
             }, 1000);
           }
         });
-
       }, 4000);
+    },
+
+    crearArray() {
+      Array.from(this.excel_subcategory).forEach((subcategory) => {
+        // console.log(subcategory.id),
+        // CREAR REGISTROS GENERALES
+        if (subcategory.data.type == "two") {
+          excec_results.add({
+            identificator: subcategory.id + "ytd" + "p1",
+            position: "ytd",
+            type: "p",
+            apuntador: subcategory.id,
+            value: 0,
+          });
+          excec_results.add({
+            identificator: subcategory.id + "ytd" + "p2",
+            position: "ytd",
+            type: "p",
+            apuntador: subcategory.id,
+            value: 0,
+          });
+          excec_results.add({
+            identificator: subcategory.id + "ytd" + "a1",
+            position: "ytd",
+            type: "a",
+            apuntador: subcategory.id,
+            value: 0,
+          });
+          excec_results.add({
+            identificator: subcategory.id + "ytd" + "a2",
+            position: "ytd",
+            type: "a",
+            apuntador: subcategory.id,
+            value: 0,
+          });
+        } else {
+          excec_results.add({
+            identificator: subcategory.id + "ytd" + "one1",
+            position: "ytd",
+            type: "one",
+            apuntador: subcategory.id,
+            value: 0,
+          });
+          excec_results.add({
+            identificator: subcategory.id + "ytd" + "one2",
+            position: "ytd",
+            type: "one",
+            apuntador: subcategory.id,
+            value: 0,
+          });
+        }
+      });
     },
     saveData() {
       new Swal({
@@ -4189,8 +4573,9 @@ export default {
             // console.log(id_identificador + dato);
 
             if (dato >= 0 && dato != resultados.data.value) {
-
-              excec_results.doc(resultados.id).update({ value: parseFloat(dato) });
+              excec_results
+                .doc(resultados.id)
+                .update({ value: parseFloat(dato) });
 
               console.log(
                 "Guardado Se edito el registro " +
@@ -4200,10 +4585,10 @@ export default {
                   " El id del registro es " +
                   resultados.id
               );
-
-            } else if (dato == '' && dato != resultados.data.value) {
-              
-              excec_results.doc(resultados.id).update({ value: parseFloat(dato) });
+            } else if (dato == "" && dato != resultados.data.value) {
+              excec_results
+                .doc(resultados.id)
+                .update({ value: parseFloat(dato) });
 
               console.log(
                 "VACIO Guardado Se edito el registro " +
@@ -4213,10 +4598,10 @@ export default {
                   " El id del registro es " +
                   resultados.id
               );
-
             } else if (dato == 0 && dato != resultados.data.value) {
-
-              excec_results.doc(resultados.id).update({ value: parseFloat(dato) });
+              excec_results
+                .doc(resultados.id)
+                .update({ value: parseFloat(dato) });
 
               console.log(
                 "CERO Guardado Se edito el registro " +
@@ -4226,7 +4611,6 @@ export default {
                   " El id del registro es " +
                   resultados.id
               );
-
             }
 
             setTimeout(() => {
@@ -4234,321 +4618,6 @@ export default {
             }, 8000);
           }
         });
-
-      // Array.from(this.excel_subcategory).forEach((subcategory) => {
-      //   // console.log(subcategory.id),
-      //   // CREAR REGISTROS GENERALES
-      //   if (subcategory.data.type == "two") {
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q1" + "p",
-      //       position: "Q1",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q2" + "p",
-      //       position: "Q2",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q3" + "p",
-      //       position: "Q3",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q4" + "p",
-      //       position: "Q4",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q1" + "a",
-      //       position: "Q1",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q2" + "a",
-      //       position: "Q2",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q3" + "a",
-      //       position: "Q3",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q4" + "a",
-      //       position: "Q4",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q" + "bw",
-      //       position: "Q",
-      //       type: "bw",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     //
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M1" + "p",
-      //       position: "M1",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M2" + "p",
-      //       position: "M2",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M3" + "p",
-      //       position: "M3",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M1" + "a",
-      //       position: "M1",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M2" + "a",
-      //       position: "M2",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M3" + "a",
-      //       position: "M3",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M" + "bw",
-      //       position: "M",
-      //       type: "bw",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     //
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W1" + "p",
-      //       position: "W1",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W2" + "p",
-      //       position: "W2",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W3" + "p",
-      //       position: "W3",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W4" + "p",
-      //       position: "W4",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W5" + "p",
-      //       position: "W5",
-      //       type: "p",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W1" + "a",
-      //       position: "W1",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W2" + "a",
-      //       position: "W2",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W3" + "a",
-      //       position: "W3",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W4" + "a",
-      //       position: "W4",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W5" + "a",
-      //       position: "W5",
-      //       type: "a",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W" + "bw",
-      //       position: "W",
-      //       type: "bw",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     //
-      //   } else {
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q1" + "o",
-      //       position: "Q1",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q2" + "o",
-      //       position: "Q2",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q3" + "o",
-      //       position: "Q3",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q4" + "o",
-      //       position: "Q4",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "Q" + "bw",
-      //       position: "Q",
-      //       type: "bw",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     //
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M1" + "o",
-      //       position: "M1",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M2" + "o",
-      //       position: "M2",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M3" + "o",
-      //       position: "M3",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M4" + "o",
-      //       position: "M4",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "M" + "bw",
-      //       position: "M",
-      //       type: "bw",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     //
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W1" + "o",
-      //       position: "W1",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W2" + "o",
-      //       position: "W2",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W3" + "o",
-      //       position: "W3",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W4" + "o",
-      //       position: "W4",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W5" + "o",
-      //       position: "W5",
-      //       type: "one",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     excec_results.add({
-      //       identificator: subcategory.id + "W" + "bw",
-      //       position: "W",
-      //       type: "bw",
-      //       apuntador: subcategory.id,
-      //       value: 0,
-      //     });
-      //     //
-      //   }
-      // });
 
       Swal.fire("Saved", "Entry registered successfully", "success");
     },
