@@ -1319,22 +1319,41 @@
                             <td>
                               <input
                                 v-if="esub.data.type == 'two'"
+                                :id="esub.id + 'ytd' + 'eoy'"
                                 class="input_table_down"
                                 type="number"
                                 value=""
                               />
                             </td>
                             <td>
-                              <img
+                              <div
                                 v-if="esub.data.type == 'two'"
                                 style="display: none"
-                                v-bind:src="
-                                  require('../../../../../assets/images/down_row.png')
-                                "
-                                width="20"
-                                alt=""
-                                class="image-fluid"
-                              />
+                                :id="esub.id + 'up_ytd'"
+                              >
+                                <img
+                                  v-bind:src="
+                                    require('../../../../../assets/images/down_row.png')
+                                  "
+                                  width="20"
+                                  alt=""
+                                  class="image-fluid"
+                                />
+                              </div>
+                              <div
+                                v-if="esub.data.type == 'two'"
+                                style="display: none"
+                                :id="esub.id + 'down_ytd'"
+                              >
+                                <img
+                                  v-bind:src="
+                                    require('../../../../../assets/images/up_row.png')
+                                  "
+                                  width="20"
+                                  alt=""
+                                  class="image-fluid"
+                                />
+                              </div>
                             </td>
                           </tr>
                         </tbody>
@@ -1634,6 +1653,7 @@ export default {
       excel_category: [],
       excel_subcategory: [],
       excec_results_f: [],
+      excec_results_ytd: [],
       excec_results_guardado: [],
       dataSelected: null,
     };
@@ -1705,6 +1725,16 @@ export default {
         )
       );
 
+    this.excec_results_ytd = [];
+    excec_results
+      .where("position", "==", "ytd")
+      .get()
+      .then((r) =>
+        r.docs.map((item) =>
+          this.excec_results_ytd.push({ id: item.id, data: item.data() })
+        )
+      );
+
     this.excec_results_guardado = [];
     excec_results
       .get()
@@ -1733,6 +1763,64 @@ export default {
     },
     insertValues() {
       setTimeout(() => {
+        Array.from(this.excec_results_ytd).forEach((result_ytd) => {
+          document.getElementById(
+            result_ytd.data.apuntador +
+              result_ytd.data.position +
+              result_ytd.data.type
+          ).value = parseFloat(result_ytd.data.value);
+
+          setTimeout(() => {
+            const YTD_dato = jquery(
+              "#" + result_ytd.data.apuntador + "ytd" + "p1"
+            ).val();
+
+            const YTD_dato2 = jquery(
+              "#" + result_ytd.data.apuntador + "ytd" + "a1"
+            ).val();
+
+            const YTD_dato3 = jquery(
+              "#" + result_ytd.data.apuntador + "ytd" + "p2"
+            ).val();
+
+            const YTD_dato4 = jquery(
+              "#" + result_ytd.data.apuntador + "ytd" + "a2"
+            ).val();
+
+            var resta;
+
+            if (YTD_dato2 >= "0") {
+              resta = YTD_dato2 - YTD_dato;
+            } else {
+              resta = YTD_dato4 - YTD_dato3;
+            }
+
+            document.getElementById(
+              result_ytd.data.apuntador + "ytd" + "eoy"
+            ).value = resta.toFixed(2);
+
+            var x = document.getElementById(result_ytd.data.apuntador + "up_ytd");
+            var y = document.getElementById(result_ytd.data.apuntador + "down_ytd");
+            // var z = document.getElementById(
+            //   result_ytd.data.apuntador + "block"
+            // );
+
+            if (resta < 0) {
+              x.style.display = "block";
+              y.style.display = "none";
+              // z.style.display = "none";
+            } else if (resta > 0) {
+              y.style.display = "block";
+              x.style.display = "none";
+              // z.style.display = "none";
+            } else {
+              y.style.display = "none";
+              x.style.display = "none";
+              // z.style.display = "none";
+            }
+          }, 1000);
+        });
+
         Array.from(this.excec_results_f).forEach((result) => {
           // console.log("Hola"); id="flecha_abajo">id="flecha_arriba"
           // <input :id="esub.id + 'Q4' + 'p_v1'" />
@@ -1743,64 +1831,6 @@ export default {
           document.getElementById(
             result.data.apuntador + result.data.position + result.data.type
           ).value = parseFloat(result.data.value);
-
-          // YTD
-          // if (
-          //   result.data.identificator ==
-          //   result.data.apuntador + "ytd" + "a1"
-          // ) {
-          //   setTimeout(() => {
-          //     const YTD_p1 = jquery(
-          //       "#" + result.data.apuntador + "ytd" + "p1"
-          //     ).val();
-
-          //     const YTD_p2 = jquery(
-          //       "#" + result.data.apuntador + "ytd" + "p2"
-          //     ).val();
-
-          //     const YTD_a1 = jquery(
-          //       "#" + result.data.apuntador + "ytd" + "a1"
-          //     ).val();
-
-          //     const YTDa2 = jquery(
-          //       "#" + result.data.apuntador + "ytd" + "a2"
-          //     ).val();
-
-          //     // var resta;
-
-          //     // resta = Q1_dato - Q1_dato2;
-          //     // console.log(
-          //     //   result.data.apuntador +
-          //     //     "Resta " +
-          //     //     Q1_dato2 +
-          //     //     Q1_dato +
-          //     //     " igual a " +
-          //     //     resta
-          //     // );
-
-          //     // document.getElementById(
-          //     //   result.data.apuntador + "Q" + "bwr"
-          //     // ).value = resta.toFixed(2);
-
-          //     // var x = document.getElementById(result.data.apuntador + "up");
-          //     // var y = document.getElementById(result.data.apuntador + "down");
-          //     // var z = document.getElementById(result.data.apuntador + "block");
-
-          //     // if (resta < 0) {
-          //     //   x.style.display = "block";
-          //     //   y.style.display = "none";
-          //     //   z.style.display = "none";
-          //     // } else if (resta > 0) {
-          //     //   y.style.display = "block";
-          //     //   x.style.display = "none";
-          //     //   z.style.display = "none";
-          //     // } else {
-          //     //   y.style.display = "none";
-          //     //   x.style.display = "none";
-          //     //   z.style.display = "none";
-          //     // }
-          //   }, 1000);
-          // }
 
           // Q
 
@@ -4494,57 +4524,79 @@ export default {
       }, 4000);
     },
 
-    crearArray() {
-      Array.from(this.excel_subcategory).forEach((subcategory) => {
-        // console.log(subcategory.id),
-        // CREAR REGISTROS GENERALES
-        if (subcategory.data.type == "two") {
-          excec_results.add({
-            identificator: subcategory.id + "ytd" + "p1",
-            position: "ytd",
-            type: "p",
-            apuntador: subcategory.id,
-            value: 0,
-          });
-          excec_results.add({
-            identificator: subcategory.id + "ytd" + "p2",
-            position: "ytd",
-            type: "p",
-            apuntador: subcategory.id,
-            value: 0,
-          });
-          excec_results.add({
-            identificator: subcategory.id + "ytd" + "a1",
-            position: "ytd",
-            type: "a",
-            apuntador: subcategory.id,
-            value: 0,
-          });
-          excec_results.add({
-            identificator: subcategory.id + "ytd" + "a2",
-            position: "ytd",
-            type: "a",
-            apuntador: subcategory.id,
-            value: 0,
-          });
-        } else {
-          excec_results.add({
-            identificator: subcategory.id + "ytd" + "one1",
-            position: "ytd",
-            type: "one",
-            apuntador: subcategory.id,
-            value: 0,
-          });
-          excec_results.add({
-            identificator: subcategory.id + "ytd" + "one2",
-            position: "ytd",
-            type: "one",
-            apuntador: subcategory.id,
-            value: 0,
-          });
-        }
-      });
-    },
+    // deleteArray() {
+    //   excec_results
+    //     .where("position", "==", 'ytd')
+    //     .get()
+    //     .then((querySnapshot) => {
+    //       querySnapshot.forEach((doc) => {
+    //         doc.ref
+    //           .delete()
+    //           .then(() => {
+    //             console.log("Documento eliminado con éxito!");
+    //           })
+    //           .catch(function (error) {
+    //             console.error("Error eliminando documento: ", error);
+    //           });
+    //       });
+    //     })
+    //     .catch(function (error) {
+    //       console.log("Error Obteniendo Documentos: ", error);
+    //     });
+    // },
+
+    // crearArray() {
+    //   Array.from(this.excel_subcategory).forEach((subcategory) => {
+    //     // console.log(subcategory.id),
+    //     // CREAR REGISTROS GENERALES
+    //     if (subcategory.data.type == "two") {
+    //       excec_results.add({
+    //         identificator: subcategory.id + "ytd" + "p1",
+    //         position: "ytd",
+    //         type: "p1",
+    //         apuntador: subcategory.id,
+    //         value: '',
+    //       });
+    //       excec_results.add({
+    //         identificator: subcategory.id + "ytd" + "p2",
+    //         position: "ytd",
+    //         type: "p2",
+    //         apuntador: subcategory.id,
+    //         value: '',
+    //       });
+    //       excec_results.add({
+    //         identificator: subcategory.id + "ytd" + "a1",
+    //         position: "ytd",
+    //         type: "a1",
+    //         apuntador: subcategory.id,
+    //         value: '',
+    //       });
+    //       excec_results.add({
+    //         identificator: subcategory.id + "ytd" + "a2",
+    //         position: "ytd",
+    //         type: "a2",
+    //         apuntador: subcategory.id,
+    //         value: '',
+    //       });
+    //     } else {
+    //       excec_results.add({
+    //         identificator: subcategory.id + "ytd" + "one1",
+    //         position: "ytd",
+    //         type: "one1",
+    //         apuntador: subcategory.id,
+    //         value: '',
+    //       });
+    //       excec_results.add({
+    //         identificator: subcategory.id + "ytd" + "one2",
+    //         position: "ytd",
+    //         type: "one2",
+    //         apuntador: subcategory.id,
+    //         value: '',
+    //       });
+    //     }
+    //   });
+    // },
+
     saveData() {
       new Swal({
         title: "Please wait",
