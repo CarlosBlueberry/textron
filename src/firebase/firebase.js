@@ -66,6 +66,7 @@ const supply_collection = db.collection('supply')
 // Excel
 const excelc_collection = db.collection('excel_category').orderBy('lugar', 'asc')
 const excels_collection = db.collection('excel_subcategory').orderBy('order', 'asc')
+const excel_collection_sub = db.collection('excel_subcategory')
 const excec_results = db.collection('excel_results')
 
 // ByExcel
@@ -99,5 +100,6 @@ export {
     byexcelc_collection,
     byexcels_collection,
     excec_results,
-    byexcel_results
+    byexcel_results,
+    excel_collection_sub
 };

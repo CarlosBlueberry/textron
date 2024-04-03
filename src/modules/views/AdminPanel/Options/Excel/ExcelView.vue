@@ -1622,12 +1622,14 @@ import {
   excelc_collection,
   excels_collection,
   excec_results,
+  excel_collection_sub,
 } from "@/firebase/firebase";
 import jquery from "jquery";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/css/index.css";
 import { firebase } from "@/firebase/firebase";
 import Swal from "sweetalert2";
+import { doc, getDoc } from "firebase/firestore";
 require("firebase/compat/auth");
 
 export default {
@@ -1655,6 +1657,7 @@ export default {
       excec_results_f: [],
       excec_results_ytd: [],
       excec_results_guardado: [],
+      subcategory_search: [],
       dataSelected: null,
     };
   },
@@ -1799,8 +1802,12 @@ export default {
               result_ytd.data.apuntador + "ytd" + "eoy"
             ).value = resta.toFixed(2);
 
-            var x = document.getElementById(result_ytd.data.apuntador + "up_ytd");
-            var y = document.getElementById(result_ytd.data.apuntador + "down_ytd");
+            var x = document.getElementById(
+              result_ytd.data.apuntador + "up_ytd"
+            );
+            var y = document.getElementById(
+              result_ytd.data.apuntador + "down_ytd"
+            );
             // var z = document.getElementById(
             //   result_ytd.data.apuntador + "block"
             // );
@@ -1828,2698 +1835,2924 @@ export default {
 
           // console.log('Casillas ' + result.data.apuntador + result.data.position + result.data.type+ 'Valor ' + result.data.value)
 
+          // var subcategory = excels_collection
+          //     .doc('')
+          //     .get()
+          //     .then((doc) => {
+          //         console.log(doc.data());
+          //     });
+
           document.getElementById(
             result.data.apuntador + result.data.position + result.data.type
           ).value = parseFloat(result.data.value);
 
-          // Q
+          // subcategory_search
 
-          if (result.data.identificator == result.data.apuntador + "Q4" + "a") {
-            setTimeout(() => {
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "Q4" + "p"
-              ).val();
+          // var subcategory = async () => {
+          //   return await excel_collection_sub.doc('0qi5Oa8PPc7oNbiQu5kc').get();
+          // }
+          // subcategory().then(result => {
+          //     console.log(result);
+          // }).catch(error => {
+          //     console.error(error);
+          // });
 
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "Q4" + "a"
-              ).val();
+          const docRef = doc(excel_collection_sub, result.data.apuntador);
+          var sub = null;
+          const docSnap = async () => {
+            sub = await getDoc(docRef);
 
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "Q3" + "p"
-              ).val();
+            if (sub.exists()) {
+              // console.log("Document data:", sub.data().formula);
 
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "Q3" + "a"
-              ).val();
+              // Q
 
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "Q2" + "p"
-              ).val();
+              if (
+                result.data.identificator ==
+                result.data.apuntador + "Q4" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "Q4" + "p"
+                  ).val();
 
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "Q2" + "a"
-              ).val();
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q4" + "a"
+                  ).val();
 
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "Q1" + "p"
-              ).val();
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "Q3" + "p"
+                  ).val();
 
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "Q1" + "a"
-              ).val();
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q3" + "a"
+                  ).val();
 
-              var resta;
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "Q2" + "p"
+                  ).val();
 
-              if (Q4_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q2" + "a"
+                  ).val();
 
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "Q1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q4_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(result.data.apuntador + "up");
+                  var y = document.getElementById(
+                    result.data.apuntador + "down"
                   );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
+                  var z = document.getElementById(
+                    result.data.apuntador + "block"
                   );
-                }
-              } else if (Q3_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
 
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "Q3" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "Q4" + "p"
+                  ).val();
 
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q4" + "a"
+                  ).val();
 
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "Q3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "Q2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "Q1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q4_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ1 Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ12 Resta " +
+                          "Dato1" +
+                          Q4_dato2 +
+                          "Dato2" +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "RestaQQQQ21 condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ22 Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ31 Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ32 Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ41 Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "QQQQ42 Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(result.data.apuntador + "up");
+                  var y = document.getElementById(
+                    result.data.apuntador + "down"
                   );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
+                  var z = document.getElementById(
+                    result.data.apuntador + "block"
                   );
-                }
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "Q2" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "Q4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "Q3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "Q2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "Q1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  // console.log(
+                  //   "Valores" +
+                  //     " " +
+                  //     result.data.identificator +
+                  //     " " +
+                  //     Q4_dato2 +
+                  //     " " +
+                  //     Q3_dato2 +
+                  //     " " +
+                  //     Q2_dato2 +
+                  //     " " +
+                  //     Q1_dato2
+                  // );
+
+                  if (Q4_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(result.data.apuntador + "up");
+                  var y = document.getElementById(
+                    result.data.apuntador + "down"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "block"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "Q1" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "Q4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "Q3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "Q2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "Q1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "Q1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q4_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= "0") {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "Q" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(result.data.apuntador + "up");
+                  var y = document.getElementById(
+                    result.data.apuntador + "down"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "block"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
               }
 
-              document.getElementById(
-                result.data.apuntador + "Q" + "bwr"
-              ).value = resta.toFixed(2);
+              // M
 
-              var x = document.getElementById(result.data.apuntador + "up");
-              var y = document.getElementById(result.data.apuntador + "down");
-              var z = document.getElementById(result.data.apuntador + "block");
+              if (
+                result.data.identificator ==
+                result.data.apuntador + "M3" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "M3" + "p"
+                  ).val();
 
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "Q3" + "a"
-          ) {
-            setTimeout(() => {
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "Q4" + "p"
-              ).val();
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "M3" + "a"
+                  ).val();
 
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "Q4" + "a"
-              ).val();
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "M2" + "p"
+                  ).val();
 
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "Q3" + "p"
-              ).val();
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "M2" + "a"
+                  ).val();
 
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "Q3" + "a"
-              ).val();
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "M1" + "p"
+                  ).val();
 
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "Q2" + "p"
-              ).val();
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "M1" + "a"
+                  ).val();
 
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "Q2" + "a"
-              ).val();
+                  var resta;
 
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "Q1" + "p"
-              ).val();
+                  if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
 
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "Q1" + "a"
-              ).val();
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
 
-              var resta;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
 
-              if (Q4_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
 
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ1 Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "M" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "M" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upm"
                   );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ12 Resta " +
-                      "Dato1" +
-                      Q4_dato2 +
-                      "Dato2" +
-                      Q4_dato +
-                      " igual a " +
-                      resta
+                  var y = document.getElementById(
+                    result.data.apuntador + "downm"
                   );
-                }
-              } else if (Q3_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "RestaQQQQ21 condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockm"
                   );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ22 Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "M2" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "M3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "M3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "M2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "M2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "M1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "M1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "M" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "M" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upm"
                   );
-                }
-              } else if (Q2_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ31 Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
+                  var y = document.getElementById(
+                    result.data.apuntador + "downm"
                   );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ32 Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockm"
                   );
-                }
-              } else if (Q1_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
 
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ41 Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "M1" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "M3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "M3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "M2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "M2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "M1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "M1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "M" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "M" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upm"
                   );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "QQQQ42 Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
+                  var y = document.getElementById(
+                    result.data.apuntador + "downm"
                   );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "Q" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "up");
-              var y = document.getElementById(result.data.apuntador + "down");
-              var z = document.getElementById(result.data.apuntador + "block");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "Q2" + "a"
-          ) {
-            setTimeout(() => {
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "Q4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "Q4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "Q3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "Q3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "Q2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "Q2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "Q1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "Q1" + "a"
-              ).val();
-
-              var resta;
-
-              // console.log(
-              //   "Valores" +
-              //     " " +
-              //     result.data.identificator +
-              //     " " +
-              //     Q4_dato2 +
-              //     " " +
-              //     Q3_dato2 +
-              //     " " +
-              //     Q2_dato2 +
-              //     " " +
-              //     Q1_dato2
-              // );
-
-              if (Q4_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockm"
                   );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
 
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "Q" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "up");
-              var y = document.getElementById(result.data.apuntador + "down");
-              var z = document.getElementById(result.data.apuntador + "block");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "Q1" + "a"
-          ) {
-            setTimeout(() => {
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "Q4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "Q4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "Q3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "Q3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "Q2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "Q2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "Q1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "Q1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q4_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= "0") {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
               }
 
-              document.getElementById(
-                result.data.apuntador + "Q" + "bwr"
-              ).value = resta.toFixed(2);
+              // W
+              if (
+                result.data.identificator ==
+                result.data.apuntador + "W5" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q5_dato = jquery(
+                    "#" + result.data.apuntador + "W5" + "p"
+                  ).val();
 
-              var x = document.getElementById(result.data.apuntador + "up");
-              var y = document.getElementById(result.data.apuntador + "down");
-              var z = document.getElementById(result.data.apuntador + "block");
+                  const Q5_dato2 = jquery(
+                    "#" + result.data.apuntador + "W5" + "a"
+                  ).val();
 
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "W4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "W4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "W3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "W3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "W2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "W2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "W1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "W1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q5_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q5_dato2 - Q5_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q5_dato +
+                          Q5_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q5_dato - Q5_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q5_dato2 +
+                          Q5_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q4_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upw"
+                  );
+                  var y = document.getElementById(
+                    result.data.apuntador + "downw"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockw"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "W4" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q5_dato = jquery(
+                    "#" + result.data.apuntador + "W5" + "p"
+                  ).val();
+
+                  const Q5_dato2 = jquery(
+                    "#" + result.data.apuntador + "W5" + "a"
+                  ).val();
+
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "W4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "W4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "W3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "W3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "W2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "W2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "W1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "W1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q5_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q5_dato2 - Q5_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q5_dato +
+                          Q5_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q5_dato - Q5_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q5_dato2 +
+                          Q5_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q4_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upw"
+                  );
+                  var y = document.getElementById(
+                    result.data.apuntador + "downw"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockw"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "W3" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q5_dato = jquery(
+                    "#" + result.data.apuntador + "W5" + "p"
+                  ).val();
+
+                  const Q5_dato2 = jquery(
+                    "#" + result.data.apuntador + "W5" + "a"
+                  ).val();
+
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "W4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "W4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "W3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "W3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "W2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "W2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "W1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "W1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q5_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q5_dato2 - Q5_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q5_dato +
+                          Q5_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q5_dato - Q5_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q5_dato2 +
+                          Q5_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q4_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upw"
+                  );
+                  var y = document.getElementById(
+                    result.data.apuntador + "downw"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockw"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "W2" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q5_dato = jquery(
+                    "#" + result.data.apuntador + "W5" + "p"
+                  ).val();
+
+                  const Q5_dato2 = jquery(
+                    "#" + result.data.apuntador + "W5" + "a"
+                  ).val();
+
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "W4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "W4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "W3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "W3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "W2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "W2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "W1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "W1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q5_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q5_dato2 - Q5_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q5_dato +
+                          Q5_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q5_dato - Q5_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q5_dato2 +
+                          Q5_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q4_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upw"
+                  );
+                  var y = document.getElementById(
+                    result.data.apuntador + "downw"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockw"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
+              } else if (
+                result.data.identificator ==
+                result.data.apuntador + "W1" + "a"
+              ) {
+                setTimeout(() => {
+                  const Q5_dato = jquery(
+                    "#" + result.data.apuntador + "W5" + "p"
+                  ).val();
+
+                  const Q5_dato2 = jquery(
+                    "#" + result.data.apuntador + "W5" + "a"
+                  ).val();
+
+                  const Q4_dato = jquery(
+                    "#" + result.data.apuntador + "W4" + "p"
+                  ).val();
+
+                  const Q4_dato2 = jquery(
+                    "#" + result.data.apuntador + "W4" + "a"
+                  ).val();
+
+                  const Q3_dato = jquery(
+                    "#" + result.data.apuntador + "W3" + "p"
+                  ).val();
+
+                  const Q3_dato2 = jquery(
+                    "#" + result.data.apuntador + "W3" + "a"
+                  ).val();
+
+                  const Q2_dato = jquery(
+                    "#" + result.data.apuntador + "W2" + "p"
+                  ).val();
+
+                  const Q2_dato2 = jquery(
+                    "#" + result.data.apuntador + "W2" + "a"
+                  ).val();
+
+                  const Q1_dato = jquery(
+                    "#" + result.data.apuntador + "W1" + "p"
+                  ).val();
+
+                  const Q1_dato2 = jquery(
+                    "#" + result.data.apuntador + "W1" + "a"
+                  ).val();
+
+                  var resta;
+
+                  if (Q5_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q5_dato2 - Q5_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q5_dato +
+                          Q5_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q5_dato - Q5_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q5_dato2 +
+                          Q5_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q4_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q4_dato2 - Q4_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q4_dato +
+                          Q4_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q4_dato - Q4_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q4_dato2 +
+                          Q4_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q3_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q3_dato2 - Q3_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q3_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q3_dato - Q3_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q3_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q2_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q2_dato2 - Q2_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q3_dato +
+                          Q2_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q2_dato - Q2_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q2_dato2 +
+                          Q3_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  } else if (Q1_dato2 >= 0) {
+                    if (
+                      result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
+                      result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
+                      result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
+                      result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
+                      result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
+                      result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
+                      result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
+                      result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
+                      result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
+                      result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
+                      result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
+                      result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
+                      result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
+                      result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
+                    ) {
+                      resta = Q1_dato2 - Q1_dato;
+
+                      console.log(
+                        result.data.apuntador +
+                          "Resta condicion " +
+                          Q1_dato +
+                          Q1_dato2 +
+                          " igual a " +
+                          resta
+                      );
+                    } else {
+                      resta = Q1_dato - Q1_dato2;
+                      console.log(
+                        result.data.apuntador +
+                          "Resta " +
+                          Q1_dato2 +
+                          Q1_dato +
+                          " igual a " +
+                          resta
+                      );
+                    }
+                  }
+
+                  if (
+                    sub.data().formula == "%" ||
+                    sub.data().formula == "d" ||
+                    sub.data().formula == "X"
+                  ) {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(2);
+                  } else {
+                    document.getElementById(
+                      result.data.apuntador + "W" + "bwr"
+                    ).value = resta.toFixed(0);
+                  }
+
+                  var x = document.getElementById(
+                    result.data.apuntador + "upw"
+                  );
+                  var y = document.getElementById(
+                    result.data.apuntador + "downw"
+                  );
+                  var z = document.getElementById(
+                    result.data.apuntador + "blockw"
+                  );
+
+                  if (resta < 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                  } else if (resta > 0) {
+                    y.style.display = "block";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  } else {
+                    y.style.display = "none";
+                    x.style.display = "none";
+                    z.style.display = "none";
+                  }
+                }, 1000);
               }
-            }, 1000);
-          }
-
-          // M
-          if (result.data.identificator == result.data.apuntador + "M3" + "a") {
-            setTimeout(() => {
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "M3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "M3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "M2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "M2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "M1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "M1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "M" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upm");
-              var y = document.getElementById(result.data.apuntador + "downm");
-              var z = document.getElementById(result.data.apuntador + "blockm");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "M2" + "a"
-          ) {
-            setTimeout(() => {
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "M3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "M3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "M2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "M2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "M1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "M1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "M" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upm");
-              var y = document.getElementById(result.data.apuntador + "downm");
-              var z = document.getElementById(result.data.apuntador + "blockm");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "M1" + "a"
-          ) {
-            setTimeout(() => {
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "M3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "M3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "M2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "M2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "M1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "M1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "M" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upm");
-              var y = document.getElementById(result.data.apuntador + "downm");
-              var z = document.getElementById(result.data.apuntador + "blockm");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          }
-
-          // W
-          if (result.data.identificator == result.data.apuntador + "W5" + "a") {
-            setTimeout(() => {
-              const Q5_dato = jquery(
-                "#" + result.data.apuntador + "W5" + "p"
-              ).val();
-
-              const Q5_dato2 = jquery(
-                "#" + result.data.apuntador + "W5" + "a"
-              ).val();
-
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "W4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "W4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "W3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "W3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "W2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "W2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "W1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "W1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q5_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q5_dato2 - Q5_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q5_dato +
-                      Q5_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q5_dato - Q5_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q5_dato2 +
-                      Q5_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q4_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "W" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upw");
-              var y = document.getElementById(result.data.apuntador + "downw");
-              var z = document.getElementById(result.data.apuntador + "blockw");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "W4" + "a"
-          ) {
-            setTimeout(() => {
-              const Q5_dato = jquery(
-                "#" + result.data.apuntador + "W5" + "p"
-              ).val();
-
-              const Q5_dato2 = jquery(
-                "#" + result.data.apuntador + "W5" + "a"
-              ).val();
-
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "W4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "W4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "W3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "W3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "W2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "W2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "W1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "W1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q5_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q5_dato2 - Q5_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q5_dato +
-                      Q5_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q5_dato - Q5_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q5_dato2 +
-                      Q5_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q4_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "W" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upw");
-              var y = document.getElementById(result.data.apuntador + "downw");
-              var z = document.getElementById(result.data.apuntador + "blockw");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "W3" + "a"
-          ) {
-            setTimeout(() => {
-              const Q5_dato = jquery(
-                "#" + result.data.apuntador + "W5" + "p"
-              ).val();
-
-              const Q5_dato2 = jquery(
-                "#" + result.data.apuntador + "W5" + "a"
-              ).val();
-
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "W4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "W4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "W3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "W3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "W2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "W2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "W1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "W1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q5_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q5_dato2 - Q5_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q5_dato +
-                      Q5_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q5_dato - Q5_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q5_dato2 +
-                      Q5_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q4_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "W" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upw");
-              var y = document.getElementById(result.data.apuntador + "downw");
-              var z = document.getElementById(result.data.apuntador + "blockw");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "W2" + "a"
-          ) {
-            setTimeout(() => {
-              const Q5_dato = jquery(
-                "#" + result.data.apuntador + "W5" + "p"
-              ).val();
-
-              const Q5_dato2 = jquery(
-                "#" + result.data.apuntador + "W5" + "a"
-              ).val();
-
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "W4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "W4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "W3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "W3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "W2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "W2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "W1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "W1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q5_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q5_dato2 - Q5_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q5_dato +
-                      Q5_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q5_dato - Q5_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q5_dato2 +
-                      Q5_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q4_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "W" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upw");
-              var y = document.getElementById(result.data.apuntador + "downw");
-              var z = document.getElementById(result.data.apuntador + "blockw");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          } else if (
-            result.data.identificator ==
-            result.data.apuntador + "W1" + "a"
-          ) {
-            setTimeout(() => {
-              const Q5_dato = jquery(
-                "#" + result.data.apuntador + "W5" + "p"
-              ).val();
-
-              const Q5_dato2 = jquery(
-                "#" + result.data.apuntador + "W5" + "a"
-              ).val();
-
-              const Q4_dato = jquery(
-                "#" + result.data.apuntador + "W4" + "p"
-              ).val();
-
-              const Q4_dato2 = jquery(
-                "#" + result.data.apuntador + "W4" + "a"
-              ).val();
-
-              const Q3_dato = jquery(
-                "#" + result.data.apuntador + "W3" + "p"
-              ).val();
-
-              const Q3_dato2 = jquery(
-                "#" + result.data.apuntador + "W3" + "a"
-              ).val();
-
-              const Q2_dato = jquery(
-                "#" + result.data.apuntador + "W2" + "p"
-              ).val();
-
-              const Q2_dato2 = jquery(
-                "#" + result.data.apuntador + "W2" + "a"
-              ).val();
-
-              const Q1_dato = jquery(
-                "#" + result.data.apuntador + "W1" + "p"
-              ).val();
-
-              const Q1_dato2 = jquery(
-                "#" + result.data.apuntador + "W1" + "a"
-              ).val();
-
-              var resta;
-
-              if (Q5_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q5_dato2 - Q5_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q5_dato +
-                      Q5_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q5_dato - Q5_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q5_dato2 +
-                      Q5_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q4_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q4_dato2 - Q4_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q4_dato +
-                      Q4_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q4_dato - Q4_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q4_dato2 +
-                      Q4_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q3_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q3_dato2 - Q3_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q3_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q3_dato - Q3_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q3_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q2_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q2_dato2 - Q2_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q3_dato +
-                      Q2_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q2_dato - Q2_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q2_dato2 +
-                      Q3_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              } else if (Q1_dato2 >= 0) {
-                if (
-                  result.data.apuntador == "ZmXF3h553TI4qqkHAx1d" ||
-                  result.data.apuntador == "c5q6dasAFc05InoGO7FQ" ||
-                  result.data.apuntador == "2NwiXB3USfBwTwE4DS6u" ||
-                  result.data.apuntador == "VRWF3E48IllOgwkHyhOc" ||
-                  result.data.apuntador == "vDf4tqzJ1izJeLmhaZLt" ||
-                  result.data.apuntador == "GiKXhALiBsYVWeB3A3Wj" ||
-                  result.data.apuntador == "OmV3Mb9c2mGH6njNrNAb" ||
-                  result.data.apuntador == "viEd4ejX83mc1f5X3m7I" ||
-                  result.data.apuntador == "pidoVl9gdaSTXI3sz7Yu" ||
-                  result.data.apuntador == "6Oa98JU0OO68oZO7bwa8" ||
-                  result.data.apuntador == "PbG6OHNzE1F66gSJD1dW" ||
-                  result.data.apuntador == "UL16bFTxw41TnnpzpIQr" ||
-                  result.data.apuntador == "oWBjYMGDWHA8ObJfMYKO" ||
-                  result.data.apuntador == "sS9e1dZbvH47P7Ss2jqQ"
-                ) {
-                  resta = Q1_dato2 - Q1_dato;
-
-                  console.log(
-                    result.data.apuntador +
-                      "Resta condicion " +
-                      Q1_dato +
-                      Q1_dato2 +
-                      " igual a " +
-                      resta
-                  );
-                } else {
-                  resta = Q1_dato - Q1_dato2;
-                  console.log(
-                    result.data.apuntador +
-                      "Resta " +
-                      Q1_dato2 +
-                      Q1_dato +
-                      " igual a " +
-                      resta
-                  );
-                }
-              }
-
-              document.getElementById(
-                result.data.apuntador + "W" + "bwr"
-              ).value = resta.toFixed(2);
-
-              var x = document.getElementById(result.data.apuntador + "upw");
-              var y = document.getElementById(result.data.apuntador + "downw");
-              var z = document.getElementById(result.data.apuntador + "blockw");
-
-              if (resta < 0) {
-                x.style.display = "block";
-                y.style.display = "none";
-                z.style.display = "none";
-              } else if (resta > 0) {
-                y.style.display = "block";
-                x.style.display = "none";
-                z.style.display = "none";
-              } else {
-                y.style.display = "none";
-                x.style.display = "none";
-                z.style.display = "none";
-              }
-            }, 1000);
-          }
+            } else {
+              // docSnap.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          };
+          docSnap();
         });
       }, 4000);
     },
