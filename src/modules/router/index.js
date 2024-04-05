@@ -148,5 +148,11 @@ export default {
             name: 'ISC_OS',
             component: () => import('@/modules/views/OS/IscOs')
         }, 
+        //Account Info 
+        {
+            path: '/Account_Info',
+            name: 'Acount_Info',
+            component: () => import('@/modules/views/AccountInfo/AccountInfo')
+        }, 
     ]
 }

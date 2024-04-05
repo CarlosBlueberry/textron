@@ -1,21 +1,5 @@
 <template>
   <div id="center" class="main center">
-    <!-- <div class="bg-main" v-bind:src="require('../../assets/images/bg-artic.png')">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-3"></div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                        <div class="text-center txt-welcome">
-                            <h1 class="oLight display-5">Hello <b class="oExtraBold">Andrew Miller</b></h1>
-                            <h1 class="space-text oRegular h2">WELCOME TO</h1>
-                            <img v-bind:src="require('../../assets/images/logo-ISC-white.png')"
-                                alt="INTEGRATED SUPPLY CHAIN" class="img-fluid logo-isc-welcome">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-3"></div>
-                </div>
-            </div>
-        </div> -->
     <section  v-if="user" class="showcase-welcome" id="showcase">
       
       <video v-if="user.email == 'artic_cat@gmail.com'" 
@@ -52,7 +36,7 @@
       <div class="txt-welcome">
         <div class="">
           <h1 class="oLight display-5">
-            Hello <b class="oExtraBold">Andrew Miller</b>
+            Hello <b class="oExtraBold">{{ user.displayName }}</b>
           </h1>
           <h1 class="space-text oRegular h2">WELCOME TO</h1>
           <img
@@ -87,7 +71,6 @@ export default {
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user);
         this.user = user;
 
         if (user.email == "artic_cat@gmail.com") {
