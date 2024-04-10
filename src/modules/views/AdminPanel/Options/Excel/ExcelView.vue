@@ -1863,10 +1863,6 @@ export default {
             sub = await getDoc(docRef);
 
             if (sub.exists()) {
-              // console.log("Document data:", sub.data().formula);
-
-              // Q
-
               if (
                 result.data.identificator ==
                 result.data.apuntador + "Q4" + "a"
@@ -2188,7 +2184,8 @@ export default {
                   if (
                     sub.data().formula == "%" ||
                     sub.data().formula == "d" ||
-                    sub.data().formula == "X"
+                    sub.data().formula == "X" || 
+                    sub.data().formula == 'Qty/Year*200K hrs'
                   ) {
                     document.getElementById(
                       result.data.apuntador + "Q" + "bwr"
@@ -2224,7 +2221,6 @@ export default {
               }
 
               // M
-
               if (
                 result.data.identificator ==
                 result.data.apuntador + "M3" + "a"
@@ -2361,7 +2357,6 @@ export default {
                   }
                 }, 1000);
               } 
-
               // W
               if (
                 result.data.identificator ==

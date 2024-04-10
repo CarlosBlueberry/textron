@@ -13,9 +13,7 @@ import { defineAsyncComponent } from '@vue/runtime-core'
 export default {
     components: {
         HeaderHome: defineAsyncComponent(() => import('../components/PortalHeader.vue')),
-        SliderPortal: defineAsyncComponent(() => import('../components/SliderPortal.vue')),
         FooterPortal: defineAsyncComponent(() => import('../components/FooterPortal.vue')),
-
     }
 }
 </script>

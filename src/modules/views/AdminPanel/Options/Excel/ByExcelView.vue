@@ -731,7 +731,7 @@
                         >
                           <tr v-if="ec.id == esub.data.id_category">
                             <!-- Dos input -->
-                            <td v-if="esub.data.type == 'two'">
+                            <td style="height: 70px;" v-if="esub.data.type == 'two'">
                               <input
                                 v-if="
                                   esub.data.name != 'Airfreight' &&
@@ -1932,19 +1932,6 @@ export default {
 
               var resta;
 
-              // console.log(
-              //   "Valores" +
-              //     " " +
-              //     result.data.identificator +
-              //     " " +
-              //     Q4_dato2 +
-              //     " " +
-              //     Q3_dato2 +
-              //     " " +
-              //     Q2_dato2 +
-              //     " " +
-              //     Q1_dato2
-              // );
 
               if (Q4_dato2 >= "0") {
                 if (
