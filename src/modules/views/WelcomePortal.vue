@@ -1,38 +1,6 @@
 <template>
   <div id="center" class="main center">
     <section  v-if="user" class="showcase-welcome" id="showcase">
-      
-      <video v-if="user.email == 'artic_cat@gmail.com'" 
-        v-bind:src="require('../../assets/video/Index_artic.mp4')"
-        muted
-        autoplay
-      ></video>
-      <video v-else-if="user.email == 'cushman@gmail.com'" 
-        v-bind:src="require('../../assets/video/index_cushman.mp4')"
-        muted
-        autoplay
-      ></video>
-      <video v-else-if="user.email == 'jacobsen@gmail.com'" 
-        v-bind:src="require('../../assets/video/index_jacobsen.mp4')"
-        muted
-        autoplay
-      ></video>
-      <video v-else-if="user.email == 'textron@gmail.com'" 
-        v-bind:src="require('../../assets/video/dashboard_textron.mp4')"
-        muted
-        autoplay
-      ></video>
-      <video v-else-if="user.email == 'gse@gmail.com'" 
-        v-bind:src="require('../../assets/video/index_gse.mp4')"
-        muted
-        autoplay
-      ></video>
-      <video v-else
-        v-bind:src="require('../../assets/video/ezgo.mp4')"
-        muted
-        autoplay
-      ></video>
-
       <div class="txt-welcome">
         <div class="">
           <h1 class="oLight display-5">
@@ -47,10 +15,13 @@
         </div>
       </div>
     </section>
+    <HoverImages />
+    <FooterApp />
   </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from '@vue/runtime-core'
 import { firebase } from "@/firebase/firebase";
 require("firebase/compat/auth");
 
@@ -67,6 +38,10 @@ export default {
       clase_gse: false,
       gse: false,
     };
+  },
+  components: {
+    HoverImages: defineAsyncComponent(() => import('../../views/HomeComponents/HoverImages.vue')),
+    FooterApp: defineAsyncComponent(() => import('../../components/SiteComponents/FooterView.vue')),
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -103,7 +78,7 @@ export default {
   position: relative;
   right: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 50vh;
   padding: 100px;
   display: flex;
   justify-content: space-between;
@@ -123,7 +98,6 @@ export default {
 }
 .txt-welcome {
   position: absolute;
-  top: 20%;
   left: 10%;
   transform: calc(-50%, -50%);
 }
