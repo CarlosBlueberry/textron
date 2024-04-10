@@ -12,6 +12,24 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/privacy',
+    name: 'privacy',
+    component: () => import('../views/LegalView.vue')
+  },
+  
+  {
+    path: '/terms',
+    name: 'terms',
+    component: () => import('../views/LegalView.vue')
+  },
+
+  {
+    path: '/legal',
+    name: 'legal',
+    component: () => import('../views/LegalView.vue')
+  },
+
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
@@ -28,6 +46,7 @@ const routes = [
     path: '/portal',
     ...portalRouter
   }
+ 
 ]
 
 
