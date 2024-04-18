@@ -5,5 +5,6 @@
 <style>
   html{
     overflow: hidden;
+    overflow-y: auto;
   }
 </style>
