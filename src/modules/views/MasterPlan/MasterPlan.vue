@@ -116,7 +116,8 @@
                                   " alt="" class="img-fluid logo-1-mat" />
                               </div>
                               <div class="text-center ms-3 mt-1">
-                                <h1 class="oLight h6">Safety</h1>
+                                <h1 class="oLight h6">EHS (Environmental, Health &
+Safety)</h1>
                               </div>
                             </div>
                           </div>

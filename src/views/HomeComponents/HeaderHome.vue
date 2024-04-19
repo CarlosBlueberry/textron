@@ -15,7 +15,7 @@
             <div class="col-12 col-lg-2 col-sm-12 col-md-12 pt-1">
               <div class="text-end">
                 <!-- @click="getToLogin" -->
-                <a class="btn btn-primary btn-login" @click="login">
+                <!-- <a class="btn btn-primary btn-login" @click="login">
                   <img
                     v-bind:src="require('../../assets/images/icono-login.png')"
                     alt="Login"
@@ -31,6 +31,14 @@
                     class="img-fluid float-start ms-3 icon-login"
                   />
                   <h6 class="oRegular">Prueba</h6>
+                </a> -->
+                <a class="btn btn-primary btn-login" @click="getToLogin">
+                  <img
+                    v-bind:src="require('../../assets/images/icono-login.png')"
+                    alt="Login"
+                    class="img-fluid float-start ms-3 icon-login"
+                  />
+                  <h6 class="oRegular">Login</h6>
                 </a>
 
               </div>
@@ -123,6 +131,11 @@
         }
       };
     },
+    methods: {
+        getToLogin() {
+            this.$router.push({ name: 'login' })
+        }
+    }
    
   };
 

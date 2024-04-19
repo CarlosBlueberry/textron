@@ -36,7 +36,7 @@ input[type="checkbox"] {
 }
 
 .area-scrollarea {
-  height: calc(95.5vh - 40px);
+  /* height: calc(95.5vh - 40px); */
   overflow: scroll;
   overflow-x: hidden;
 }

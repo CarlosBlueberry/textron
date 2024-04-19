@@ -68,7 +68,8 @@
                 <option value="ezgo/cushman">EZGO | CUSHMAN</option>
                 <option value="jacobsen">JACOBSEN</option>
                 <option value="gse">GSE</option>
-                <option value="safety">SAFETY</option>
+                <option value="safety">EHS (Environmental, Health &
+Safety)</option>
                 <option value="global">GLOBAL</option>
                 <option value="logistics">LOGISTICS</option>
                 <option value="fulfillment">FULIFILLMENT</option>

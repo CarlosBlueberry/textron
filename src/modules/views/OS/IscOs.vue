@@ -237,7 +237,8 @@
                 <div class="row mb-4">
                   <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                     <div class="ms-4">
-                      <h1 class="oLight title-vision h2 ms-5">SAFETY</h1>
+                      <h1 class="oLight title-vision h2 ms-5">EHS (Environmental, Health &
+Safety)</h1>
                     </div>
                   </div>
                   <div class="col-12 col-sm-12 col-md-12 col-lg-6">
@@ -293,7 +294,8 @@
                   <div class="row mb-4">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                       <div class="ms-4">
-                        <h1 class="oLight title-vision h2 ms-5">SAFETY</h1>
+                        <h1 class="oLight title-vision h2 ms-5">EHS (Environmental, Health &
+Safety)</h1>
                       </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6">
