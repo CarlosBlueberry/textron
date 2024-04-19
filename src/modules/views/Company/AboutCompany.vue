@@ -196,41 +196,26 @@
         <div class="text-center">
           <h1 class="oExtraBold h2">Values in action</h1>
           <center>
-            <div style="width: 30%;">
+            <div style="width: 30%">
               <div
                 id="carouselExampleCaptions"
                 class="carousel slide"
                 data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img style="background-color: rgba(0,0,0,0.8);"
-                      :src="require('../../../assets/images/blog-segunda.png')"
+                  <div
+                    v-for="(itemImg, index) in values_action"
+                    :key="itemImg.id"
+                    :class="{ 'carousel-item': true, active: index === 0 }"
+                  >
+                    <img
+                      style="filter: brightness(50%);"
+                      :src="itemImg.data.img"
                       class="d-block w-100"
                       alt="..."
                     />
                     <div class="carousel-caption d-none d-md-block">
-                      <h5>First slide label</h5>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img style="background-color: rgba(0,0,0,0.8);"
-                      :src="require('../../../assets/images/blog-segunda.png')"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Second slide label</h5>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img style="background-color: rgba(0,0,0,0.8);"
-                      :src="require('../../../assets/images/blog-segunda.png')"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Third slide label</h5>
+                      <h5>{{ itemImg.data.text }}</h5>
                     </div>
                   </div>
                 </div>
@@ -260,7 +245,7 @@
                 </button>
               </div>
             </div>
-        </center>
+          </center>
         </div>
       </div>
     </div>
@@ -458,6 +443,7 @@ import {
   values_collection,
   additional_collection,
   principles_collection,
+  values_action_collection,
 } from "@/firebase/firebase";
 
 export default {
@@ -468,6 +454,7 @@ export default {
       vision: [],
       values: [],
       add: [],
+      values_action: [],
       principles: [],
       user: null,
       clase_artic: false,
@@ -510,6 +497,15 @@ export default {
     });
   },
   mounted() {
+    this.values_action = [];
+    values_action_collection
+      .get()
+      .then((r) =>
+        r.docs.map((itemPrin) =>
+          this.values_action.push({ id: itemPrin.id, data: itemPrin.data() })
+        )
+      );
+
     this.principles = [];
     principles_collection
       .get()

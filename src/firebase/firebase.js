@@ -56,6 +56,7 @@ const enablers_collection = db.collection('enablers')
 // Values
 const values_collection = db.collection('values')
 const additional_collection = db.collection('additional')
+const values_action_collection = db.collection('values_action')
 
 // Principles
 const principles_collection = db.collection('Principles')
@@ -101,5 +102,6 @@ export {
     byexcels_collection,
     excec_results,
     byexcel_results,
-    excel_collection_sub
+    excel_collection_sub,
+    values_action_collection
 };

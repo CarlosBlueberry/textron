@@ -167,6 +167,78 @@
               </a>
             </div>
           </div>
+
+          <!-- VALUES IN ACTIOn -->
+          <div class="text-center">
+            <h1>Add values in action</h1>
+            <form
+              @submit.prevent="addValues_Action"
+              class="form-add-update oRegular"
+            >
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="title" class="form-label">Main Title:</label>
+                    <input
+                      v-model="text_value"
+                      type="text"
+                      class="form-control"
+                      id="title"
+                      name="title"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-5">
+                    <h6 class="">Upload your main image:</h6>
+                    <div class="mb-3">
+                      <input
+                        style="display: none"
+                        required
+                        class="selectimage img_input"
+                        @change="SelectImage"
+                        ref="imgSelector"
+                        accept="image/png, image/jpeg"
+                        type="file"
+                        name="file"
+                        id="file"
+                      />
+                    </div>
+                    <button
+                      @click="onSelectImage"
+                      type="button"
+                      class="btn btn-primary btn-green"
+                    >
+                      <h6 class="pt-1 hRegular">Choose file</h6>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div v-if="localImage" class="mb-2">
+                <div class="text-center">
+                  <h6 class="">Selected image:</h6>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <img
+                    width="300"
+                    height="300"
+                    class="img-yhumbnail"
+                    :src="localImage"
+                    alt="entry-picture"
+                  />
+                </div>
+              </div>
+              <br />
+              <div class="row mt-4">
+                <div class="text-center">
+                  <button type="" class="btn btn-primary btn-green">
+                    <h6 class="pt-1 hRegular">Submit</h6>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div class="col">
           <div class="row">
@@ -225,6 +297,29 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <p class="text-center h2 mt-4">Values in action</p>
+          <div class="row">
+            <div
+              v-for="itemImg in values_action"
+              v-bind:key="itemImg.id"
+              class="col-3"
+            >
+              <div class="p-3">
+                <div class="text-center">
+                  <img :src="itemImg.data.img" width="250" alt="" />
+                  <p class="h5 mt-3">{{ itemImg.data.text }}</p>
+                  <button
+                    @click="deleteValues_Actiona(itemImg.id)"
+                    class="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -432,13 +527,14 @@ import {
   values_collection,
   additional_collection,
   principles_collection,
+  values_action_collection,
 } from "@/firebase/firebase";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/css/index.css";
 import { defineAsyncComponent } from "@vue/runtime-core";
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
-
+import uploadImage from "../../../helpers/uploadImages";
 import Swal from "sweetalert2";
 
 export default {
@@ -448,10 +544,13 @@ export default {
       mision: [],
       vision: [],
       values: [],
+      values_action: [],
       add: [],
       principles: [],
+      text_value: "",
       isLoading: true,
       dataSelected: null,
+      localImage: null,
       entitle: "",
       ensubtitle: "",
       principle: "",
@@ -475,6 +574,15 @@ export default {
     Loading,
   },
   mounted() {
+    this.values_action = [];
+    values_action_collection
+      .get()
+      .then((r) =>
+        r.docs.map((itemPrin) =>
+          this.values_action.push({ id: itemPrin.id, data: itemPrin.data() })
+        )
+      );
+
     this.principles = [];
     principles_collection
       .get()
@@ -533,6 +641,46 @@ export default {
     }, 2000);
   },
   methods: {
+    async addValues_Action() {
+      new Swal({
+        title: "Please wait",
+        allowOutsideClick: false,
+      });
+      const picture = await uploadImage(this.file);
+      Swal.showLoading();
+      values_action_collection
+        .add({
+          img: picture,
+          text: this.text_value,
+        })
+        .then(() => this.$mount());
+      Swal.fire("Saved", "Entry registered successfully", "success");
+      setTimeout(() => {
+        this.$router.go(0);
+      }, 5000);
+    },
+    deleteValues_Actiona(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          values_action_collection
+            .doc(id)
+            .delete()
+            .then(() => this.$mount());
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          setTimeout(() => {
+            this.$router.go(0);
+          }, 5000);
+        }
+      });
+    },
     async openModalUpdate(id) {
       enablers_collection
         .doc(id)
@@ -626,7 +774,6 @@ export default {
             setTimeout(() => {
               this.$router.go(0);
             }, 5000);
-
           } else {
             Swal.fire("Saved", "Invalid file", "error");
             console.log("Archivo no valido");
@@ -661,6 +808,24 @@ export default {
           }, 5000);
         }
       });
+    },
+    // <----- SELECT IMAGE ---->
+    SelectImage(event) {
+      const file = event.target.files[0];
+
+      if (!file) {
+        this.localImage = null;
+        this.file = null;
+        return;
+      }
+      this.file = file;
+      const fr = new FileReader();
+      fr.onload = () => (this.localImage = fr.result);
+      fr.readAsDataURL(file);
+    },
+    // <----- ON SELECTED IMAGE ---->
+    onSelectImage() {
+      this.$refs.imgSelector.click();
     },
   },
 };
@@ -719,5 +884,9 @@ export default {
   color: #fff;
   border-radius: 0;
   width: 150px;
+}
+
+.img_input [type="file"] {
+  display: none;
 }
 </style>
